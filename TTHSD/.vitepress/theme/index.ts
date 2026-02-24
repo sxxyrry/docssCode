@@ -52,8 +52,10 @@ export default {
             quicks: []
           }, 'https://footerjs-sxxyrry.pages.dev/');
         } else {
-          console.warn('Footer 不存在')
-          setTimeout(initFooter, 200)
+          // 在浏览器环境中且 Footer 不存在时重试
+          if (typeof window !== 'undefined') {
+            setTimeout(initFooter, 200)
+          }
         }
       }
 

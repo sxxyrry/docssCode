@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>23XRStudio 文档汇总 - 23XRStudio</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+    header {
+      padding: 28px 0;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    p.lead {
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      padding: 18px;
+      margin: 18px 0;
+      box-shadow: var(--card-shadow);
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      color: var(--text-primary);
+    }
+    .card p {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .links {
+      margin-top: 12px;
+    }
+    a.button {
+      display: inline-block;
+      padding: 8px 12px;
+      background: var(--accent-color);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+    a.small {
+      color: var(--accent-color);
+      text-decoration: underline;
+      margin-left: 12px;
+    }
+    footer {
+      color: var(--text-secondary);
+      text-align: center;
+      padding: 28px 0;
+    }
+    @media (max-width: 520px) {
+      .wrap {
+        margin: 20px auto;
+        padding: 0 12px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+
+  <script>
+    /**
+     * 动态加载（强制去除缓存） CSS 的函数
+     * @param {string} src - 要加载的 CSS 的 src 链接
+     * @returns {Promise} 返回一个 Promise 对象，用于处理异步加载
+     */
+    function loadStyle(src) {
+      return new Promise((resolve, reject) => {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = src + "?v=" + new Date().getTime(); // 使用时间戳避免缓存
+        link.async = true;
+        link.onload = resolve;
+        link.onerror = reject;
+        document.head.appendChild(link);
+      });
+    }
+
+    /**
+     * 动态加载（强制去除缓存） JS 的函数
+     * @param {string} src - 要加载的 JS 的 src 链接
+     * @returns {Promise} 返回一个 Promise 对象，用于处理异步加载
+     */
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        if (src.includes("?")) {
+          script.src = src + "&v=" + new Date().getTime(); // 使用时间戳避免缓存
+        } else {
+          script.src = src + "?v=" + new Date().getTime(); // 使用时间戳避免缓存
+        }
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+  </script>
+
+  <script>
+    const quicksJson = JSON.stringify([]);
+
+    const encodedQuicks = encodeURIComponent(quicksJson);
+
+    const encodedText = encodeURIComponent(
+      '23XRStudio 文档汇总'
+    );
+
+    loadStyle("../assets/style.css");
+    let scriptArray = [
+      "../assets/AddHeader.js",
+      // "../assets/AddFooter.js",
+      `https://footerjs-sxxyrry.pages.dev/footer.js?name=${encodedText}&description=${encodedText}&quicks=${encodedQuicks}`,
+      // "../assets/AddIco.js",
+      "../assets/AutoRun.js",
+    ];
+
+    scriptArray.forEach((script) => {
+      loadScript(script);
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>23XRStudio 文档汇总</h1>
+      <p class="lead">
+        集中列出 23XRStudio 各项目文档。当前已收录的文档如下：
+      </p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h3>TTHSD TT 高速下载器</h3>
+        <p>
+          TTHSD 下载器的 接口文档与示例等，包含 API、事件及使用指南（中文）。
+        </p>
+        <div class="links">
+          <a class="button" href="TTHSD/">查看文档</a>
+          <a class="small" href="TTHSD/zh/guide/getting-started.html">快速开始</a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

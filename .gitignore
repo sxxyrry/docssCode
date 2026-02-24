@@ -1,0 +1,7 @@
+TTHighSpeedDownloader_*/
+node_modules/
+cache/
+dist/
+
+*.lock
+pnpm-lock.yaml

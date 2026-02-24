@@ -15,34 +15,17 @@ export default {
   },
   setup() {
     onMounted(() => {
+      let onDo1 = false;
+      let onDo2 = false;
+
       function tranText2CN(){
         try {
-          const spans1 = document.querySelectorAll('span.menu-text');
+          const spans1 = document.querySelectorAll('span.text');
           for (const span1 of spans1) {
             // span1.textContent = await translate2(span1.textContent, 'zh');
-            if (span1.textContent === 'On this page') {
-              span1.textContent = '本页内容';
+            if (span1.textContent === 'Search') {
+              span1.textContent = '搜索';
             }
-          }
-          const spans2 = document.querySelectorAll('span.text');
-          for (const span2 of spans2) {
-            // span2.textContent = await translate2(span2.textContent, 'zh');
-            if (span2.textContent === 'Search') {
-              span2.textContent = '搜索';
-            }
-          }
-          const spans3 = document.querySelectorAll('span.desc');
-          for (const span3 of spans3) {
-            // span3.textContent = await translate2(span3.textContent, 'zh');
-            if (span3.textContent === 'Next page') {
-              span3.textContent = '下一页';
-            } else if (span3.textContent === 'Previous page') {
-              span3.textContent = '上一页';
-            }
-          }
-          const div = document.querySelector('div#doc-outline-aria-label');
-          if (div) {
-            div.textContent = '本页内容';
           }
         } catch(e) {
           console.error(e);

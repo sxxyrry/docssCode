@@ -6,12 +6,35 @@ export default defineConfig({
   description: "一个 跨平台、跨语言 调用的 下载器 内核",
   base: '/TTHSD/',
   lang: 'zh-CN',
+  lastUpdated: true,
   vite: {
     server: {
       allowedHosts: ['p.ceroxe.fun']
     }
   },
   themeConfig: {
+    logo: 'https://images-sxxyrry.pages.dev/TTHSD_Bigger.png',
+    outline: {
+      label: '在本页面'
+    },
+    docFooter: {
+      prev: '上一页',
+      next: '下一页'
+    },
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    },
+    externalLinkIcon: true,
+    editLink: {
+      pattern: 'https://github.com/sxxyrry/docssCode/edit/main/TTHSD/:path',
+      text: '在 Github 上编辑此页'
+    },
+    sidebarMenuLabel: '菜单',
+    returnToTopLabel: '回到顶部',
     search: {
       provider: 'local'
     },
@@ -25,14 +48,6 @@ export default defineConfig({
     ],
 
     sidebar: [
-      {
-        text: '其他',
-        collapsed: true,
-        items: [
-          { text: '鸣谢', link: '/zh/acknowledgments/acknowledgments' },
-          { text: '贡献指南', link: '/zh/guide/contributing.md' },
-        ]
-      },
       {
         text: '指南',
         collapsed: true,
@@ -96,7 +111,15 @@ export default defineConfig({
         items: [
           { text: ' TTHSD Python 接口封装 的 Callback 示例', link: '/zh/examples/py-interface-callback' },
         ]
-      }
+      },
+      {
+        text: '其他',
+        collapsed: true,
+        items: [
+          { text: '鸣谢', link: '/zh/acknowledgments/acknowledgments' },
+          { text: '贡献指南', link: '/zh/guide/contributing.md' },
+        ]
+      },
     ],
 
     socialLinks: [

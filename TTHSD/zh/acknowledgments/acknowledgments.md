@@ -1,3 +1,37 @@
+<script setup>
+import { VPTeamMembers } from 'vitepress/theme'
+
+const members_Core = [
+  {
+    avatar: 'https://images-sxxyrry.pages.dev/sxxyrryAvatar.jpg',
+    name: 'Sxxyrry',
+    title: '项目负责人',
+    links: [
+      { icon: 'github', link: 'https://github.com/sxxyrry' },
+    ]
+  },
+]
+
+const members_Test = [
+  {
+    avatar: 'https://images-sxxyrry.pages.dev/XiaoHuiHui.jpg',
+    name: 'XiaoHuiHuiB',
+    title: '文档审查和测试',
+    links: [
+      { icon: 'github', link: 'https://github.com/xiaohuihuib' }
+    ]
+  },
+  {
+    avatar: 'https://images-sxxyrry.pages.dev/ChengHaoLee-2012Avatar.jpg',
+    name: 'ChengHaoLee',
+    title: '测试',
+    links: [
+      { icon: 'github', link: 'https://github.com/chenghaolee-2012' }
+    ]
+  },
+]
+</script>
+
 # 鸣谢
 
 TT 高速下载器 (TTHSD) 项目的成功离不开开源社区的支持和众多贡献者的努力。在此，我们向所有帮助过项目的人和组织表示最诚挚的感谢。
@@ -20,7 +54,7 @@ TTHSD 的开发离不开以下优秀的开源项目：
 ## 项目团队
 
 ### 核心开发
-- **[Sxxyrry](https://github.com/sxxyrry)** - 项目负责人
+<!-- - **[Sxxyrry](https://github.com/sxxyrry)** - 项目负责人
   - 架构设计、核心功能开发
   - 版本维护和技术支持
 
@@ -31,7 +65,13 @@ TTHSD 的开发离不开以下优秀的开源项目：
 
 - **[ChengHaoLee](https://github.com/chenghaolee-2012)** - 测试
   - 功能测试
-  - 跨平台兼容性测试
+  - 跨平台兼容性测试 -->
+
+<VPTeamMembers size="small" :members="members_Core" />
+
+### 测试和文档贡献
+
+<VPTeamMembers size="small" :members="members_Test" />
 
 ## 社区贡献者
 

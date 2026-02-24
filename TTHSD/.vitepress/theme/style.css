@@ -104,6 +104,10 @@ pre * {
   white-space: pre; /* 保留空格和换行，文本不自动换行 */
 }
 
+.VPDocFooter {
+  width: 93% !important;
+}
+
 :root {
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);

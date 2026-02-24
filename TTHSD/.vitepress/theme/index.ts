@@ -61,13 +61,20 @@ export default {
       // 先声明变量，提升作用域
       let footerInstance: any = null;
 
-      if (typeof window !== 'undefined' && window.Footer) {
-        footerInstance = new window.Footer({
-          name: 'TT 高速下载器内核',
-          description: 'TT 高速下载器内核 是一个用于程序的下载器内核。使用 GNUGPL v3.0 协议 开源发布。',
-          quicks: []
-        }, 'https://footerjs-sxxyrry.pages.dev/');
+      const initFooter = () => {
+        if (typeof window !== 'undefined' && window.Footer) {
+          footerInstance = new window.Footer({
+            name: 'TT High Speed Downloader',
+            description: 'TTHSD 核心（TT High Speed Downloader Core）是一个高性能、跨平台、多语言可调用的下载引擎内核。它专门为外部项目提供强大的下载支持能力，让开发者能够轻松集成专业级的文件下载功能到自己的应用程序中。采用 GNU GPL v3.0 协议 开源。',
+            quicks: []
+          }, 'https://footerjs-sxxyrry.pages.dev/');
+        } else {
+          console.warn('Footer 不存在')
+          setTimeout(initFooter, 200)
+        }
       }
+
+      initFooter();
 
       const setFooter = () => {
           const footerE = document.querySelector('.sxxyrry-footer');
@@ -91,8 +98,8 @@ export default {
 
       router.onAfterPageLoad = (to: string) => {
         setTimeout(() => {
-          setFooter()
-          setMode()
+          setFooter();
+          setMode();
         }, 200);
       };
     }, 1000);

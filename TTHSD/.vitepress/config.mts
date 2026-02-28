@@ -7,6 +7,7 @@ export default defineConfig({
   base: '/TTHSD/',
   lang: 'zh-CN',
   lastUpdated: true,
+  ignoreDeadLinks: true,
   vite: {
     server: {
       allowedHosts: ['p.ceroxe.fun']

@@ -377,7 +377,7 @@ const id = downloader.startDownload(urls, savePaths, {
 
 ### Q7: 使用 ***quickDownload*** 简化单次下载
 
-***tthsd*** 还提供了 ***quickDownload*** 函数，返回 ***Promise&lt;void&gt;***，适合简单场景。但在 Electron 中，由于它内部会创建新的 ***TTHSDownloader*** 实例，您可能需要自行管理生命周期。建议仅在主进程的简单任务中使用。
+***tthsd*** 还提供了 ***quickDownload*** 函数，返回 ***Promise<void>***，适合简单场景。但在 Electron 中，由于它内部会创建新的 ***TTHSDownloader*** 实例，您可能需要自行管理生命周期。建议仅在主进程的简单任务中使用。
 
 ---
 

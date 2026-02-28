@@ -1,16 +1,13 @@
 # TT 高速下载器 Python 接口封装使用文档
 
-> [!WARNING]
-> 注意：本节主要针对 TTHSD 核心 ≥0.5.1 版本
+> [!TIP]
+> 本文档介绍的是 **TTHSD Next**（Rust 版本）的 Python 接口。
 > 
-> 如果您使用的是 TTHSD 核心 0.5.0 版本，请注意以下限制：
-> - 暂停后无法恢复下载（***pause_download*** 会删除下载器，***resume_download*** 无法恢复）
-> - 错误事件可能以 ***EventTypeMsg*** 形式发送，而非 ***EventTypeErr***，需要同时监听两种事件类型
-> - ***stop_download*** 不会等待任务退出，立即清理资源
+> API 接口与 [TTHSD Golang](https://github.com/sxxyrry/TTHighSpeedDownloader) 版本完全兼容，只需替换动态库即可迁移。
 > 
-> 请根据实际使用的内核版本参考相应文档
+> TTHSD Golang 已停止开发，建议使用 TTHSD Next 以获得更好的性能。
 
-本文档介绍 ***TTHSD_interface.py*** 模块，该模块为 **TT高速下载器**（***TTHighSpeedDownloader.dll***/***.so***/***.dylib***）提供 Python 封装，支持多任务下载的创建、控制与进度回调。
+本文档介绍 ***TTHSD_interface.py*** 模块，该模块为 **TT高速下载器**（***TTHSD.dll***/***.so***/***.dylib***）提供 Python 封装，支持多任务下载的创建、控制与进度回调。
 
 ---
 
@@ -20,9 +17,9 @@
 
 1. Python 3.11 及以上版本
 2. TT高速下载器动态库文件：
-   - Windows 平台：***TTHighSpeedDownloader.dll***
-   - macOS 平台：***TTHighSpeedDownloader.dylib***
-   - Linux 平台：***TTHighSpeedDownloader.so***
+   - Windows 平台：***TTHSD.dll***
+   - macOS 平台：***TTHSD.dylib***
+   - Linux 平台：***TTHSD.so***
 
 ### 0.2 安装步骤
 
@@ -49,7 +46,7 @@
 ```python
 downloader = TTHSDownloader(dll_path: str | pathlib.Path | None = None)
 ```
-- **参数** ***dll_path***：动态库路径。若为 ***None***，根据操作系统自动猜测默认文件名（Windows: ***TTHighSpeedDownloader.dll***，macOS: ***TTHighSpeedDownloader.dylib***，Linux: ***TTHighSpeedDownloader.so***），路径为当前工作目录。
+- **参数** ***dll_path***：动态库路径。若为 ***None***，根据操作系统自动猜测默认文件名（Windows: ***TTHSD.dll***，macOS: ***TTHSD.dylib***，Linux: ***TTHSD.so***），路径为当前工作目录。
 
 ### 2.2 创建下载器
 #### ***start_download(...) -> int***
@@ -108,7 +105,7 @@ def my_callback(event: dict, msg: dict) -> None:
 
 ### 3.2 事件类型与数据格式 
 
-本部分与 [Event 文档](/zh/event/event-overview) 相同，在此不过多赘述
+本部分与 [Event 文档](/zh/event/event-overview) 相同，在此不过多赘述。
 
 ### 3.3 线程安全要求
 - 回调函数在 **DLL 内部的工作线程** 中执行。
@@ -203,29 +200,26 @@ Python 接口通过以下方式管理这些引用：
 4. **回调异常**：回调中若抛出异常，会被模块捕获并记录到日志，但不会中断下载流程。
 5. **多线程环境**：不同线程使用不同的 ***TTHSDownloader*** 实例是安全的。同一实例的方法（除回调注册外）在 Python 层面未加锁，但 DLL 内部状态由自身管理。
 
-### 7.1 TTHSD Core 0.5.0 版本特殊注意事项
+---
 
-如果您使用的是 TTHSD Core 0.5.0 版本，请注意以下额外限制：
+## 8. TTHSD Next 的优势
 
-1. **暂停功能限制**：调用 ***pause_download*** 后，下载器会被立即从内部映射表中删除，因此 ***resume_download*** 无法恢复已暂停的下载。这是 0.5.0 版本的一个已知限制。
+相比 TTHSD Golang 版本，使用 TTHSD Next 的 Python 接口可以获得以下优势：
 
-2. **错误事件格式**：在 0.5.0 版本中，某些错误情况（如启动下载失败）会以 ***EventTypeMsg*** 形式发送错误事件，而不是 ***EventTypeErr***。因此需要同时监听两种事件类型：
-   ```python
-   def callback(event, msg):
-       if event['Type'] == 'err':
-           print("错误:", msg.get('Error'))
-       elif event['Type'] == 'msg':
-           text = msg.get('Text', '')
-           # 检查是否包含错误信息
-           if '错误' in text or 'Error' in text or '失败' in text:
-               print("错误:", text)
-   ```
+### 性能提升
+- **更高的下载速度**：优化的异步 I/O 模型
+- **更低的内存占用**：精细的内存管理，无 GC 开销
+- **更高的并发数**：可支持数十万并发连接
+- **更稳定的性能**：无 GC 暂停，性能可预测
 
-3. **停止行为**：***stop_download*** 不会等待任务退出，而是立即清理资源，可能导致部分任务未完全结束。
+### 兼容性
+- **完全兼容**：API 接口与 TTHSD Golang 版本完全兼容
+- **直接替换**：只需替换动态库文件即可迁移
+- **代码无需修改**：现有代码可以直接使用
 
 ---
 
-## 8. 常见问题
+## 9. 常见问题
 
 **Q: 为什么我的回调没有收到 ***update*** 事件？**  
 A: 检查 ***callback*** 参数是否传入，且您的回调处理正常。也可通过日志观察是否有回调异常。
@@ -236,12 +230,12 @@ A: 可以不需要。当前实现会自动管理资源，无需手动调用 clos
 **Q: 需要并发下载多个任务组怎么办？**  
 A: 创建多个 ***TTHSDownloader*** 实例，每个管理一组任务。它们独立运行。或配合 ***threading*** 模块执行多次 开始下载
 
-**Q: 在 TTHSD Core 0.5.0 版本中，为什么暂停后无法恢复下载？**  
-A: 这是 0.5.0 版本的一个已知限制。***pause_download*** 会立即从内部映射表中删除下载器，导致 ***resume_download*** 找不到对应的下载器。建议升级到 0.5.1 或更高版本以获得完整的暂停/恢复功能。
+**Q: TTHSD Next 与 TTHSD Golang 有什么区别？**  
+A: TTHSD Next 是 TTHSD Golang 的 Rust 重写版本，具有更高的性能、更低的内存占用和更稳定的运行表现。API 接口完全兼容，只需替换动态库即可迁移。
 
-**Q: 在 TTHSD Core 0.5.0 版本中，为什么某些错误信息出现在 msg 事件中而不是 err 事件中？**  
-A: 0.5.0 版本中，某些错误情况（如启动下载失败）会以 ***EventTypeMsg*** 形式发送错误事件。需要同时监听 ***EventTypeMsg*** 和 ***EventTypeErr*** 两种事件类型来获取完整的错误信息。
+**Q: 我可以从 TTHSD Golang 迁移到 TTHSD Next 吗？**  
+A: 是的，API 接口完全兼容，只需将动态库文件从 TTHighSpeedDownloader.dll/so/dylib 替换为 TTHSD.dll/so/dylib 即可，代码无需修改。
 
 ---
 
-如有问题，请参考 DLL 文档或提交 issue。
+如有问题，请参考 [TTHSD Next GitHub](https://github.com/sxxyrry/TTHSDNext) 或提交 issue。

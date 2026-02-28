@@ -99,17 +99,31 @@ export default defineConfig({
         ]
       },
       {
-        text: ' Python 接口封装',
+        text: '接口封装',
         collapsed: true,
         items: [
-          { text: '怎么使用', link: '/zh/py-interface/how-to-use.md' }
+          {
+            text: ' Python ',
+            collapsed: true,
+            items: [
+              { text: ' Py 接口封装 怎么使用', link: '/zh/interface/py/how-to-use' },
+            ]
+          },
+          {
+            text: ' Node.js/TypeScript ',
+            collapsed: true,
+            items: [
+              { text: ' TS 接口封装 怎么使用', link: '/zh/interface/ts/how-to-use' },
+              { text: ' TS 接口封装 怎么在 Electron 中使用', link: '/zh/interface/ts/how-to-integrate-in-Electron' },
+            ]
+          },
         ]
       },
       {
         text: '示例',
         collapsed: true,
         items: [
-          { text: ' TTHSD Python 接口封装 的 Callback 示例', link: '/zh/examples/py-interface-callback' },
+          { text: ' TTHSD Python 接口封装 的 Callback 示例', link: '/zh/examples/interface/py/callback' },
         ]
       },
       {
@@ -117,7 +131,7 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: '鸣谢', link: '/zh/acknowledgments/acknowledgments' },
-          { text: '贡献指南', link: '/zh/guide/contributing.md' },
+          { text: '贡献指南', link: '/zh/guide/contributing' },
         ]
       },
     ],

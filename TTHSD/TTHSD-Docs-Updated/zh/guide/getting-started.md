@@ -8,8 +8,6 @@
 > - 建议迁移到 TTHSD Next 以获得更好的性能和功能
 > - 调用方式与 TTHSD Next 相同，可以直接替换动态库
 > - [TTHSD Golang](https://github.com/sxxyrry/TTHighSpeedDownloader) 的官方发布最新版（ 0.5.0 版本 ）有 **Bug** ，不建议使用。
->
-> 新版文档未完全更新，请等待更新。
 
 ## 简介
 

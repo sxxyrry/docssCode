@@ -11,7 +11,7 @@
 
 ### 任务数据结构 (Task Data)
 
-传递给 ***startDownload*** 等函数的任务列表必须是 JSON 格式字符串：
+传递给 ***start_download*** 等函数的任务列表必须是 JSON 格式字符串：
 
 ```json
 [
@@ -120,7 +120,7 @@ def callback(event_json_str, msg_json_str):
 ### 内存管理 (C/C++ 调用者)
 - ***tasksData*** 指向的内存需在调用期间保持有效。
 - 回调函数中的 ***event*** 和 ***msg*** 指针仅在回调执行期间有效，不要在回调外部保存这些指针。
-- ***stopDownload*** 会清理下载器内部所有资源，包括异步任务和网络连接，当前下载器也会被销毁。
+- ***stop_download*** 会清理下载器内部所有资源，包括异步任务和网络连接，当前下载器也会被销毁。
 - 在 Python 接口封装 端调用 close() 后，应确保不再使用对应的下载器 ID。
 - 暂停/恢复功能在并行下载（is_multiple=true）时可能存在限制，建议顺序下载时使用暂停/恢复功能。
 
@@ -139,13 +139,13 @@ def callback(event_json_str, msg_json_str):
 
 | 函数名 | 功能描述 |
 |--------|----------|
-| [getDownloader](/zh/api/functions/getDownloader) | 创建下载器实例但不启动下载 |
-| [startDownload](/zh/api/functions/startDownload) | 创建下载器实例并立即启动下载 |
-| [startDownload_ID](/zh/api/functions/startDownload_ID) | 启动已创建的下载器（顺序下载） |
-| [startMultipleDownloads_ID](/zh/api/functions/startMultipleDownloads_ID) | 启动已创建的下载器（并行下载） |
-| [pauseDownload](/zh/api/functions/pauseDownload) | 暂停下载 |
-| [resumeDownload](/zh/api/functions/resumeDownload) | 恢复下载 |
-| [stopDownload](/zh/api/functions/stopDownload) | 停止下载并清理资源 |
+| [get_downloader](/zh/api/functions/get_downloader) | 创建下载器实例但不启动下载 |
+| [start_download](/zh/api/functions/start_download) | 创建下载器实例并立即启动下载 |
+| [start_download_id](/zh/api/functions/start_download_id) | 启动已创建的下载器（顺序下载） |
+| [start_multiple_downloads_id](/zh/api/functions/start_multiple_downloads_id) | 启动已创建的下载器（并行下载） |
+| [pause_download](/zh/api/functions/pause_download) | 暂停下载 |
+| [resume_download](/zh/api/functions/resume_download) | 恢复下载 |
+| [stop_download](/zh/api/functions/stop_download) | 停止下载并清理资源 |
 
 ## TTHSD Next 的性能优势
 

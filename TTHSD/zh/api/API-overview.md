@@ -11,7 +11,7 @@
 
 ### 任务数据结构 (Task Data)
 
-传递给 ***startDownload*** 等函数的任务列表必须是 JSON 格式字符串：
+传递给 `startDownload` 等函数的任务列表必须是 JSON 格式字符串：
 
 ```json
 [
@@ -42,37 +42,37 @@ def callback(event_json_str, msg_json_str):
 
 ## 事件与消息结构 (Event & Message)
 
-回调函数的两个参数 ***event*** 和 ***msg*** 均为 JSON 格式字符串。
+回调函数的两个参数 `event` 和 `msg` 均为 JSON 格式字符串。
 
 ### 1. 事件结构 (Event)
 
-***Event*** 对象描述了当前发生的事件类型和元数据。
+`Event` 对象描述了当前发生的事件类型和元数据。
 
 | 字段 | 类型 | 说明 | 注意事项 |
 | :--- | :--- | :--- | :--- |
-| ***Type*** | string | 事件类型 | ***start***, ***startOne***, ***update***, ***endOne***, ***end***, ***msg***, ***err*** |
-| ***Name*** | string | 事件名称 | 仅在部分事件中包含（如 ***msg*** 类型可能包含 "错误"、"停止" 等） |
-| ***ShowName*** | string | 显示名称 | ***update*** 和 ***start***/***end*** 事件中为空字符串 |
-| ***ID*** | string | 任务 ID | ***update*** 事件中包含对应任务 ID |
+| `Type` | string | 事件类型 | `start`, `startOne`, `update`, `endOne`, `end`, `msg`, `err` |
+| `Name` | string | 事件名称 | 仅在部分事件中包含（如 `msg` 类型可能包含 "错误"、"停止" 等） |
+| `ShowName` | string | 显示名称 | `update` 和 `start`/`end` 事件中为空字符串 |
+| `ID` | string | 任务 ID | `update` 事件中包含对应任务 ID |
 
 **事件类型详解**:
 
-- ***start***: 批量任务开始（ID为空）
-- ***startOne***: 单个文件开始（包含完整 ID 和 ShowName）
-- ***update***: 进度更新（**包含任务 ID**）
-- ***endOne***: 单个文件结束（包含完整 ID 和 ShowName）
-- ***end***: 批量任务结束（ID为空）
-- ***msg***: 消息通知（包括错误、暂停、恢复、停止等状态）
-- ***err***: 错误通知
+- `start`: 批量任务开始（ID为空）
+- `startOne`: 单个文件开始（包含完整 ID 和 ShowName）
+- `update`: 进度更新（**包含任务 ID**）
+- `endOne`: 单个文件结束（包含完整 ID 和 ShowName）
+- `end`: 批量任务结束（ID为空）
+- `msg`: 消息通知（包括错误、暂停、恢复、停止等状态）
+- `err`: 错误通知
 
 ### 2. 消息结构 (Msg)
 
-***Msg*** 对象的内容取决于 ***Event.Type***，且在 ***msg*** 类型下对应的 Key 可能不同。
+`Msg` 对象的内容取决于 `Event.Type`，且在 `msg` 类型下对应的 Key 可能不同。
 
-#### ***start*** / ***end***
-- **Msg 内容**: 空对象 ***{}***
+#### `start` / `end`
+- **Msg 内容**: 空对象 `{}`
 
-#### ***startOne*** / ***endOne***
+#### `startOne` / `endOne`
 - **Msg 内容**:
 ```json
 {
@@ -84,7 +84,7 @@ def callback(event_json_str, msg_json_str):
 }
 ```
 
-#### ***update***
+#### `update`
 - **Msg 内容**:
 ```json
 {
@@ -93,8 +93,8 @@ def callback(event_json_str, msg_json_str):
 }
 ```
 
-#### ***msg***
-***msg*** 类型的事件用于传递各种状态信息，其 JSON Key 固定为 "Text"
+#### `msg`
+`msg` 类型的事件用于传递各种状态信息，其 JSON Key 固定为 "Text"
 
 - **Msg 内容**:
 ```json
@@ -107,8 +107,8 @@ def callback(event_json_str, msg_json_str):
 { "Text": "下载已恢复" }
 ```
 
-#### ***err***
-***err*** 类型的事件用于传递错误信息，其 JSON Key 固定为 "Error"
+#### `err`
+`err` 类型的事件用于传递错误信息，其 JSON Key 固定为 "Error"
 
 - **Msg 内容**:
 ```json
@@ -118,20 +118,20 @@ def callback(event_json_str, msg_json_str):
 ## 通用规则
 
 ### 内存管理 (C/C++ 调用者)
-- ***tasksData*** 指向的内存需在调用期间保持有效。
-- 回调函数中的 ***event*** 和 ***msg*** 指针仅在回调执行期间有效，不要在回调外部保存这些指针。
-- ***stopDownload*** 会清理下载器内部所有资源，包括异步任务和网络连接，当前下载器也会被销毁。
+- `tasksData` 指向的内存需在调用期间保持有效。
+- 回调函数中的 `event` 和 `msg` 指针仅在回调执行期间有效，不要在回调外部保存这些指针。
+- `stopDownload` 会清理下载器内部所有资源，包括异步任务和网络连接，当前下载器也会被销毁。
 - 在 Python 接口封装 端调用 close() 后，应确保不再使用对应的下载器 ID。
 - 暂停/恢复功能在并行下载（is_multiple=true）时可能存在限制，建议顺序下载时使用暂停/恢复功能。
 
 ### 线程安全
 - API 函数是线程安全的。
-- 可以同时管理多个不同的 ***Downloader*** 实例。
-- 对同一个 ***Downloader ID*** 的操作（如 暂停 -> 恢复）应顺序执行。
+- 可以同时管理多个不同的 `Downloader` 实例。
+- 对同一个 `Downloader ID` 的操作（如 暂停 -> 恢复）应顺序执行。
 
 ### 错误处理
-- API 函数返回 ***-1*** 表示失败（如参数错误）。
-- 异步过程中的错误（如网络超时）将通过 ***err*** 事件类型的 ***Error*** 字段回调通知。
+- API 函数返回 `-1` 表示失败（如参数错误）。
+- 异步过程中的错误（如网络超时）将通过 `err` 事件类型的 `Error` 字段回调通知。
 
 ## API 函数列表
 

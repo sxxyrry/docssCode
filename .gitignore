@@ -1,4 +1,5 @@
-TTHighSpeedDownloader_*/
+/TTHSD/TTHighSpeedDownloader_*/
+/TTHSD/TTHSDNext/
 node_modules/
 cache/
 dist/

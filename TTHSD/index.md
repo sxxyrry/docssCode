@@ -21,10 +21,12 @@ hero:
       link: "/zh/api/API-overview"
 
 features:
-  - title: "特性一"
-    details: "跨平台支持"
-  - title: "特性二"
-    details: "多语言可调用"
-  - title: "特性三"
-    details: "高性能"
+  - title: "🌐 7 种下载协议"
+    details: "原生支持 HTTP/HTTPS、HTTP/3 (QUIC)、FTP、BitTorrent/Magnet、ED2K、Metalink 4.0"
+  - title: "🖥️ 5 大平台覆盖"
+    details: "Windows、Linux、macOS、Android、HarmonyOS 全平台动态库编译"
+  - title: "🔗 7+ 种语言绑定"
+    details: "Rust、Python、Java/Kotlin、C#、Node.js、C/C++、Godot 原生调用"
+  - title: "⚡ 极致性能"
+    details: "动态分片工作量窃取算法、TLS 指纹伪装、零 GC 停顿、极低内存占用"
 ---

@@ -55,6 +55,8 @@ export default defineConfig({
         items: [
           { text: '什么是 TTHSD 核心', link: '/zh/guide/what-is-TTHSD-Core' },
           { text: '快速开始', link: '/zh/guide/getting-started' },
+          { text: '支持的协议', link: '/zh/guide/supported-protocols' },
+          { text: '版本详解', link: '/zh/guide/version/version-overview' },
         ]
       },
       {
@@ -118,6 +120,43 @@ export default defineConfig({
               { text: ' TS 接口封装 怎么在 Electron 中使用', link: '/zh/interface/ts/how-to-integrate-in-Electron' },
             ]
           },
+          {
+            text: ' C/C++/C# ',
+            collapsed: true,
+            items: [
+              { text: ' C/C++/C# 接口封装 怎么使用', link: '/zh/interface/c_cpp_csharp/how-to-use' },
+            ]
+          },
+          {
+            text: ' Godot ',
+            collapsed: true,
+            items: [
+              { text: ' Godot 接口封装 怎么使用', link: '/zh/interface/godot/how-to-use' },
+            ]
+          },
+          {
+            text: ' Golang ',
+            collapsed: true,
+            items: [
+              { text: ' Golang 接口封装 怎么使用', link: '/zh/interface/golang/how-to-use' },
+            ]
+          },
+          {
+            text: ' Java/Kotlin ',
+            collapsed: true,
+            items: [
+              { text: ' Java/Kotlin 接口封装 怎么使用', link: '/zh/interface/java_kt/how-to-use' },
+              { text: ' Java/Kotlin 接口封装 怎么在 Android 和 HarmonyOS 中使用', link: '/zh/interface/java_kt/how-to-use-in-AndroidAndHarmonyOS' },
+              { text: ' Java/Kotlin 接口封装 怎么在 Minecraft Mod / Plugin 中使用', link: '/zh/interface/java_kt/how-to-use-in-minecraft' },
+            ]
+          },
+          {
+            text: ' Rust ',
+            collapsed: true,
+            items: [
+              { text: ' Rust 接口封装 怎么使用', link: '/zh/interface/rust/how-to-use' },
+            ]
+          },
         ]
       },
       {
@@ -133,6 +172,7 @@ export default defineConfig({
         items: [
           { text: '鸣谢', link: '/zh/acknowledgments/acknowledgments' },
           { text: '贡献指南', link: '/zh/guide/contributing' },
+          { text: '对比', link: '/zh/Comparison/overview.md' },
         ]
       },
     ],

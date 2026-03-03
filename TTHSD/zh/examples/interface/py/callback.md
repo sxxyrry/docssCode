@@ -77,4 +77,4 @@ def callback_func(event_dict: Event, msg_dict: dict[str, str | int | float]):
 
 ## 兼容性说明
 
-此回调函数示例完全兼容 TTHSD Golang 版本。如果您正在使用 TTHSD Golang 版本，只需将动态库文件替换为 TTHSD.dll/so/dylib 即可，代码无需修改。
+此回调函数示例完全兼容 TTHSD Golang 版本。如果您正在使用 TTHSD Golang 版本，只需将动态库文件替换为 tthsd.dll/so/dylib 即可，代码无需修改。

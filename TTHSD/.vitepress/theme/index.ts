@@ -62,6 +62,7 @@ export default {
       initFooter();
 
       const setFooter = () => {
+          if (typeof document === 'undefined') return;
           const footerE = document.querySelector('.sxxyrry-footer');
           // console.log('footerEl', footerEl);
           if (footerE) {
@@ -72,8 +73,9 @@ export default {
       }
 
       const setMode = () => {
+        if (typeof document === 'undefined') return;
         var btn = document.querySelector('button.VPSwitch.VPSwitchAppearance');
-        if (btn) {
+        if (btn && btn.title && btn.click && typeof btn.title === 'string' && btn.click instanceof Function) {
           if (btn.title.includes('dark')) {
             btn.click();
           }

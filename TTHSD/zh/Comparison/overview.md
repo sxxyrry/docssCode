@@ -196,54 +196,6 @@
 
 ---
 
-## 开发方式对比
-
-### TTHSNext
-
-**开发方式：** AI 驱动全栈开发
-
-**技术栈：** 反重力 Agent + Claude + Gemini
-
-**优势：**
-
-- ✅ **快速迭代** - AI 自动生成复杂协议实现
-- ✅ **代码质量** - 遵循 Rust 最佳实践
-- ✅ **跨平台适配** - AI 自动处理平台差异
-- ✅ **多语言绑定** - AI 生成各语言绑定代码
-- ✅ **协议扩展** - 快速支持新协议
-
-**独特价值：**
-
-- 从 Golang 到 Rust 的完全重写
-- 无需手动修改代码
-- 证明 AI 开发的可行性
-
-### aria2
-
-**开发方式：** 传统开源社区开发
-
-**技术栈：** C++
-
-**特点：**
-
-- ✅ 成熟稳定
-- ✅ 社区活跃
-- ⚠️ 开发速度相对较慢
-
-### libtorrent
-
-**开发方式：** 传统开源社区开发
-
-**技术栈：** C++
-
-**特点：**
-
-- ✅ BitTorrent 领域标准
-- ✅ 功能完整
-- ⚠️ 协议单一
-
----
-
 ## 市场定位分析
 
 ### 目标用户
@@ -253,7 +205,6 @@
 | **桌面应用开发者** | 多协议下载 | 协议覆盖全面，原生集成 |
 | **游戏开发者** | 高性能、零 GC | Rust 实现，零停顿，Godot 支持 |
 | **移动应用开发者** | Android/HarmonyOS | 完美支持，性能优异 |
-| **企业应用** | 可靠、可维护 | AI 生成，结构清晰 |
 | **中国市场** | ED2K 资源 | 独家支持 ED2K 协议 |
 | **浏览器扩展** | 轻量级下载 | WebAssembly 支持 |
 
@@ -296,8 +247,7 @@
 2. **唯一支持 HarmonyOS 的下载 SDK**
 3. **唯一 8 种语言原生绑定的下载引擎**
 4. **唯一支持 SFTP 的现代多协议下载引擎**
-5. **唯一 AI 驱动开发的下载引擎**
-6. **唯一平衡多协议覆盖与高性能的方案**
+5. **唯一平衡多协议覆盖与高性能的方案**
 
 ---
 
@@ -310,7 +260,6 @@ TTHSNext = aria2 的协议丰富度
           + libtorrent 的 P2P 能力
           + libcurl 的通用性
           + Rust 的极致性能
-          + AI 的快速迭代
           + HarmonyOS 独家支持
 ```
 
@@ -321,12 +270,7 @@ TTHSNext = aria2 的协议丰富度
    - 解决 Android/HarmonyOS 兼容性问题
    - 实现零 GC 停顿
 
-2. **完全 AI 生成代码**
-   - 证明 AI 开发可行性
-   - 快速实现复杂协议
-   - 遵循最佳实践
-
-3. **全协议支持（7 种）**
+2. **全协议支持（7 种）**
    - HTTP/HTTPS
    - HTTP/3 (QUIC)
    - FTP
@@ -335,13 +279,19 @@ TTHSNext = aria2 的协议丰富度
    - ED2K（独家）
    - Metalink 4.0
 
-4. **全平台覆盖**
+3. **全平台覆盖**
    - Windows/Linux/macOS
    - Android
    - HarmonyOS（独家）
 
-5. **多语言绑定**
-   - Rust/Python/Java/C#/Node.js/Godot/C++/Go
+4. **多语言绑定**
+   - Rust
+   - Python
+   - Java/Kotlin
+   - C/CPP/C#(/.NET)
+   - Node.js
+   - Godot
+   - Golang
 
 ### 市场前景
 
@@ -372,7 +322,7 @@ TTHSNext = aria2 的协议丰富度
 - **核心语言：** Rust
 - **异步运行时：** Tokio
 - **网络库：** 基于原生实现
-- **多语言绑定：** FFI + 自动生成
+- **多语言绑定：** FFI 等
 
 ### 协议支持清单
 
@@ -395,7 +345,6 @@ TTHSNext = aria2 的协议丰富度
 - HarmonyOS
 
 ⚠️ **计划中：**
-- iOS
 - WebAssembly（完整支持）
 
 ### 语言绑定清单
@@ -404,19 +353,10 @@ TTHSNext = aria2 的协议丰富度
 - Rust
 - Python
 - Java/Kotlin
-- C#/.NET
+- C/CPP/C#(.NET)
 - Node.js
 - Godot
-- C++
-- Go
+- Golang
 
 ⚠️ **计划中：**
-- Swift
-
----
-
-**最后更新：** 2026年3月2日
-
-**项目链接：** https://github.com/TTHSDownloader
-
-**文档链接：** https://docss-23xr.pages.dev/TTHSD/zh/guide/what-is-TTHSD-Core.html
+暂时没有

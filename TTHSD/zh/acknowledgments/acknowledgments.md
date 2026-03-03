@@ -5,7 +5,7 @@ const members_Core = [
   {
     avatar: 'https://images-sxxyrry.pages.dev/sxxyrryAvatar.jpg',
     name: 'Sxxyrry',
-    title: '项目负责人/作者',
+    title: '项目负责人，作者',
     links: [
       { icon: 'github', link: 'https://github.com/sxxyrry' },
     ]
@@ -13,7 +13,7 @@ const members_Core = [
   {
     avatar: 'https://images-sxxyrry.pages.dev/Wangziqi0Avatar.png',
     name: 'Wangziqi0',
-    title: '文档审查，测试和修复/ Rust 版本主要修复者',
+    title: '文档审查， Rust 版本主要修复者',
     links: [
       { icon: 'github', link: 'https://github.com/Wangziqi0' }
     ]

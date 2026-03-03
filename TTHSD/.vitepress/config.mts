@@ -168,11 +168,11 @@ export default defineConfig({
       },
       {
         text: '其他',
-        collapsed: true,
+        collapsed: false,
         items: [
           { text: '鸣谢', link: '/zh/acknowledgments/acknowledgments' },
           { text: '贡献指南', link: '/zh/guide/contributing' },
-          { text: '对比', link: '/zh/Comparison/overview.md' },
+          { text: '与其他项目的对比', link: '/zh/Comparison/overview.md' },
         ]
       },
     ],

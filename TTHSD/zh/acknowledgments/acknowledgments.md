@@ -74,116 +74,142 @@ TTHSD Next 的开发离不开以下优秀的开源项目：
 #### 异步运行时与并发
 - **[tokio](https://github.com/tokio-rs/tokio)** - 异步运行时
   - 提供了高效的异步 I/O 和任务调度
+  - 版本: 1.40
   - 许可证: MIT
 
 - **[tokio-util](https://github.com/tokio-rs/tokio)** - Tokio 实用工具
   - 提供了额外的异步实用功能
+  - 版本: 0.7
   - 许可证: MIT
 
 - **[futures](https://github.com/rust-lang/futures-rs)** - Future 抽象
   - 提供了异步编程的核心抽象
+  - 版本: 0.3.32
   - 许可证: MIT OR Apache-2.0
 
 - **[async-trait](https://github.com/dtolnay/async-trait)** - 异步 trait 支持
   - 提供了在 trait 中使用 async 的能力
+  - 版本: 0.1
   - 许可证: MIT OR Apache-2.0
 
 #### HTTP 客户端
 - **[rquest](https://github.com/penumbra-x/rquest)** - HTTP 客户端
   - 提供了支持 TLS 指纹模拟的异步 HTTP 客户端
+  - 版本: 5.1
   - 许可证: Apache-2.0
 
 - **[rquest-util](https://github.com/penumbra-x/rquest)** - rquest 工具库
   - 提供了浏览器指纹模拟功能
+  - 版本: 2.2
   - 许可证: Apache-2.0
 
 #### HTTP/3 (QUIC)
 - **[quinn](https://github.com/quinn-rs/quinn)** - QUIC 协议实现
   - 提供了纯 Rust 的 QUIC 协议栈
+  - 版本: 0.11
   - 许可证: MIT OR Apache-2.0
 
 - **[h3](https://github.com/hyperium/h3)** - HTTP/3 实现
   - 提供了 HTTP/3 协议支持
+  - 版本: 0.0.8
   - 许可证: MIT
 
 - **[h3-quinn](https://github.com/hyperium/h3)** - h3 与 quinn 集成
   - 提供了 h3 与 quinn 的集成层
+  - 版本: 0.0.10
   - 许可证: MIT
 
 #### TLS 加密
 - **[rustls](https://github.com/rustls/rustls)** - TLS 实现
   - 提供了纯 Rust 的 TLS 支持
+  - 版本: 0.23
   - 许可证: Apache-2.0 OR MIT OR ISC
 
 - **[webpki-roots](https://github.com/rustls/webpki-roots)** - CA 证书
   - 提供了 Mozilla 的根证书集合
+  - 版本: 0.26
   - 许可证: MPL-2.0
 
 #### 文件传输协议
 - **[suppaftp](https://github.com/veeso/suppaftp)** - FTP 客户端
   - 提供了异步 FTP 协议支持
+  - 版本: 8.0
   - 许可证: MIT
 
 - **[russh](https://github.com/warp-tech/russh)** - SSH 客户端
   - 提供了纯 Rust 的 SSH 协议支持
+  - 版本: 0.46
   - 许可证: Apache-2.0
 
 - **[russh-sftp](https://github.com/warp-tech/russh)** - SFTP 客户端
   - 提供了基于 russh 的 SFTP 支持
+  - 版本: 2.0
   - 许可证: Apache-2.0
 
 #### BitTorrent
 - **[librqbit](https://github.com/ikatson/rqbit)** - BitTorrent 客户端
   - 提供了纯 Rust 的 BitTorrent 协议支持
+  - 版本: 8.1
   - 许可证: MIT
 
 #### Metalink
 - **[metalink](https://github.com/mpolden/metalink-rs)** - Metalink 解析
   - 提供了 Metalink 4.0 XML 解析支持
+  - 版本: 0.1
   - 许可证: MIT
 
 #### 序列化与数据
 - **[serde](https://github.com/serde-rs/serde)** - 序列化框架
   - 提供了高效的序列化和反序列化功能
+  - 版本: 1.0
   - 许可证: MIT OR Apache-2.0
 
 - **[serde_json](https://github.com/serde-rs/json)** - JSON 支持
   - 提供了 JSON 序列化支持
+  - 版本: 1.0
   - 许可证: MIT OR Apache-2.0
 
 - **[bytes](https://github.com/tokio-rs/bytes)** - 字节处理
   - 提供了高效的字节缓冲区管理
+  - 版本: 1
   - 许可证: MIT
 
 #### WebSocket
 - **[tokio-tungstenite](https://github.com/snapview/tokio-tungstenite)** - WebSocket 客户端
   - 提供了基于 tokio 的 WebSocket 支持
+  - 版本: 0.24
   - 许可证: MIT
 
 #### 工具库
 - **[url](https://github.com/servo/rust-url)** - URL 解析
   - 提供了 URL 解析和处理功能
+  - 版本: 2
   - 许可证: MIT OR Apache-2.0
 
 - **[once_cell](https://github.com/matklad/once_cell)** - 延迟初始化
   - 提供了线程安全的延迟初始化
+  - 版本: 1.21.3
   - 许可证: MIT OR Apache-2.0
 
 - **[lazy_static](https://github.com/rust-lang-nursery/lazy-static.rs)** - 静态延迟初始化
   - 提供了静态变量的延迟初始化
+  - 版本: 1.5.0
   - 许可证: MIT OR Apache-2.0
 
 - **[num_cpus](https://github.com/seanmonstar/num_cpus)** - CPU 核心数
   - 提供了获取系统 CPU 核心数的功能
+  - 版本: 1.16
   - 许可证: MIT OR Apache-2.0
 
 - **[http](https://github.com/hyperium/http)** - HTTP 类型
   - 提供了 HTTP 相关的类型定义
+  - 版本: 1
   - 许可证: MIT OR Apache-2.0
 
 #### 跨语言绑定
 - **[jni](https://github.com/jni-rs/jni-rs)** - Rust JNI 绑定
   - 提供了 Rust 与 Java/Kotlin 的互操作性
+  - 版本: 0.21
   - 许可证: MIT OR Apache-2.0
 
 ### 构建工具

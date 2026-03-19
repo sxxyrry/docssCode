@@ -1,10 +1,21 @@
 <script setup>
 import { VPTeamMembers } from 'vitepress/theme'
 
+const members_CoreStudio = [
+  {
+    avatar: 'https://images-sxxyrry.pages.dev/sxxyrryAvatar_old.jpg',
+    name: 'TT23XR Studio',
+    title: '项目创始工作室',
+    links: [
+      { icon: 'github', link: 'https://github.com/sxxyrry' },
+    ]
+  },
+]
+
 const members_Core = [
   {
     avatar: 'https://images-sxxyrry.pages.dev/sxxyrryAvatar.jpg',
-    name: 'Sxxyrry',
+    name: 'Sxxyrry（来自 TT23XR Studio ）',
     title: '项目负责人，作者',
     links: [
       { icon: 'github', link: 'https://github.com/sxxyrry' },
@@ -39,7 +50,7 @@ const members_Contributor = [
   },
   {
     avatar: 'https://images-sxxyrry.pages.dev/CGrakeskiAvatar.jpg',
-    name: 'CGrakeski',
+    name: 'CGrakeski（来自 Xnors Studio ）',
     title: '文档审查',
     links: [
       { icon: 'github', link: 'https://github.com/CGrakeski' }
@@ -47,7 +58,7 @@ const members_Contributor = [
   },
   {
     avatar: 'https://images-sxxyrry.pages.dev/w1wenjieAvatar.png',
-    name: 'w1wenjie',
+    name: 'w1wenjie（来自 TT23XR Studio ）',
     title: '文档审查',
     links: [
       { icon: 'github', link: 'https://github.com/w1wenjie' }
@@ -61,7 +72,7 @@ const members_Contributor = [
 TT 高速下载器 (TTHSD) 项目的成功离不开开源社区的支持和众多贡献者的努力。在此，我们向所有帮助过项目的人和组织表示最诚挚的感谢。
 
 > [!TIP]
-> 本文档介绍的是 **TTHSD Next**（Rust 版本）的鸣谢信息。
+> 本文档主要介绍的是 **TTHSD Next**（Rust 版本）的鸣谢信息。
 > 
 > [TTHSD Golang](https://github.com/sxxyrry/TTHighSpeedDownloader) 已停止开发，但我们仍然感谢所有为 Golang 版本做出贡献的人。
 
@@ -245,6 +256,10 @@ TTHSD Next 的开发离不开以下优秀的开源项目：
     - 使TTHSD能够轻松支持Windows、Linux 和macOS平台
 
 ## 项目团队
+
+### 核心开发工作室
+
+<VPTeamMembers size="small" :members="members_CoreStudio" />
 
 ### 核心开发
 

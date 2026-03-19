@@ -6,3 +6,5 @@ dist/
 
 *.lock
 pnpm-lock.yaml
+
+*.txt

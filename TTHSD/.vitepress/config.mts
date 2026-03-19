@@ -45,7 +45,7 @@ export default defineConfig({
       { text: '什么是 TTHSD 核心', link: '/zh/guide/what-is-TTHSD-Core' },
       { text: '快速开始', link: '/zh/guide/getting-started' },
       { text: ' API 文档', link: '/zh/api/API-overview' },
-      { text: '回到文档汇总', link: '/back' },
+      { text: '回到文档汇总', link: '/back/' },
     ],
 
     sidebar: [
@@ -172,29 +172,40 @@ export default defineConfig({
         items: [
           { text: '鸣谢', link: '/zh/acknowledgments/acknowledgments' },
           { text: '贡献指南', link: '/zh/guide/contributing' },
-          { text: '与其他项目的对比', link: '/zh/Comparison/overview.md' },
-        ]
+          { text: '与其他项目的对比', link: '/zh/Comparison/overview' },
+          {
+            text: '公告栏',
+            link: '/back/Bulletin/'
+          },
+        ],
       },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/sxxyrry/TTHighSpeedDownloader' }
+      { icon: 'github', link: 'https://github.com/TTHSDownaloder/TTHSDNext' }
     ]
   }
   ,
   head: [
-    ['script', {}, `(function(){document.addEventListener('DOMContentLoaded', function(){
-      try{
-        var links = document.querySelectorAll('a');
-        for(var i=0;i<links.length;i++){
-          var el = links[i];
-          if(el.textContent && el.textContent.trim() === '回到文档汇总'){
-            el.href = location.origin + '/';
-            el.target = '_self';
+    ['script', {}, `
+      var func = () => {setTimeout(() => {
+        try{
+          var links = document.querySelectorAll('a');
+          for(var i=0;i<links.length;i++){
+            var el = links[i];
+            if(el.href && el.href.includes('/back')){
+              el.href = location.origin + el.href.substring(window.location.origin.length + ('/' + window.location.pathname.split('/').slice(1)[0]).length + 5);
+              el.target = '_self';
+            }
           }
-        }
-      }catch(e){};
-    });})();`],
+        }catch(e){};
+        setTimeout(func, 100);
+      }, 1000);}
+      
+      document.addEventListener('DOMContentLoaded', func)
+      setTimeout(func, 1000)
+      `],
     ['script', { src: `https://footerjs-sxxyrry.pages.dev/footer.js?autorun=false` }, ],
   ],
 })
+

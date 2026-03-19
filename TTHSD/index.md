@@ -5,10 +5,10 @@ layout: home
 hero:
   name: "TT高速下载器"
   text: "跨平台、多语言调用的下载器内核"
-  tagline: "由 23XR Studio 开发"
+  tagline: "由 TT23XR Studio 开发"
   image:
     src: https://images-sxxyrry.pages.dev/TTHSD_Bigger.png
-    alt: TT高速下载器
+    alt: TT高速下载器.png
   actions:
     - theme: brand
       text: "快速开始"

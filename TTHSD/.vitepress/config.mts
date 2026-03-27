@@ -68,13 +68,13 @@ export default defineConfig({
             text: '函数列表',
             collapsed: true,
             items: [
-              { text: 'getDownloader', link: '/zh/api/functions/getDownloader' },
-              { text: 'startDownload', link: '/zh/api/functions/startDownload' },
-              { text: 'startDownload_ID', link: '/zh/api/functions/startDownload_ID' },
-              { text: 'startMultipleDownloads_ID', link: '/zh/api/functions/startMultipleDownloads_ID' },
-              { text: 'pauseDownload', link: '/zh/api/functions/pauseDownload' },
-              { text: 'resumeDownload', link: '/zh/api/functions/resumeDownload' },
-              { text: 'stopDownload', link: '/zh/api/functions/stopDownload' }
+              { text: 'get_downloader', link: '/zh/api/functions/get_downloader' },
+              { text: 'start_download', link: '/zh/api/functions/start_download' },
+              { text: 'start_download_ID', link: '/zh/api/functions/start_download_ID' },
+              { text: 'start_multiple_downloads_id', link: '/zh/api/functions/start_multiple_downloads_id' },
+              { text: 'pause_download', link: '/zh/api/functions/pause_download' },
+              { text: 'resume_download', link: '/zh/api/functions/resume_download' },
+              { text: 'stop_download', link: '/zh/api/functions/stop_download' }
             ]
           }
         ]
@@ -182,7 +182,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/TTHSDownaloder/TTHSDNext' }
+      { icon: 'github', link: 'https://github.com/TTHSDownaloder/' }
     ]
   }
   ,

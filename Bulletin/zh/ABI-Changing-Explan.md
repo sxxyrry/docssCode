@@ -1,5 +1,3 @@
-> 本篇隶属于 [公告](/zh/overview) 下
-
 # TTHSD Next ABI 命名风格变更说明
 
 ## 概述

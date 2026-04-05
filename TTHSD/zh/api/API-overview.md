@@ -16,10 +16,10 @@
 ```json
 [
   {
-    "URL": "https://example.com/file.zip",
-    "SavePath": "/path/to/save/file.zip",
-    "ShowName": "文件显示名称",
-    "ID": "unique-task-id-123"
+    "url": "https://example.com/file.zip",
+    "save_path": "/path/to/save/file.zip",
+    "show_name": "文件显示名称",
+    "id": "unique-task-id-123"
   }
 ]
 ```

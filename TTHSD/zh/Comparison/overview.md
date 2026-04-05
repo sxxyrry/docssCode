@@ -1,6 +1,6 @@
-# TTHSNext 与主流下载引擎对比分析
+# TTHSD Next 与主流下载引擎对比分析
 
-> TTHSNext - 下一代高性能跨平台下载引擎核心 SDK
+> TTHSD Next - 下一代高性能跨平台下载引擎核心 SDK
 
 ---
 
@@ -19,7 +19,7 @@
 
 ## 项目概述
 
-### TTHSNext
+### TTHSD Next
 
 **技术栈：** Rust
 
@@ -31,7 +31,7 @@
 
 ## 核心技术对比
 
-| 维度 | TTHSNext | aria2 | libtorrent | libcurl | reqwest |
+| 维度 | TTHSD Next | aria2 | libtorrent | libcurl | reqwest |
 |------|----------|-------|------------|---------|---------|
 | **核心语言** | Rust | C++ | C++ | C | Rust |
 | **定位** | 下载引擎 SDK | 命令行工具 + RPC | BitTorrent 引擎 | 通用网络传输库 | HTTP 客户端 |
@@ -48,7 +48,7 @@
 
 ### 当前已支持
 
-| 协议 | TTHSNext | aria2 | libtorrent | libcurl | reqwest |
+| 协议 | TTHSD Next | aria2 | libtorrent | libcurl | reqwest |
 |------|----------|-------|------------|---------|---------|
 | HTTP/HTTPS | ✅ | ✅ | ❌ | ✅ | ✅ |
 | HTTP/3 (QUIC) | ✅ | ❌ | ❌ | ❌ | ❌ |
@@ -61,7 +61,7 @@
 
 ### 协议覆盖对比分析
 
-**TTHSNext 独特优势：**
+**TTHSD Next 独特优势：**
 
 1. **ED2K 协议支持** - 市面唯一支持 ED2K 的现代下载引擎
    - aria2 不支持
@@ -95,7 +95,7 @@
 
 ## 平台支持对比
 
-| 平台 | TTHSNext | aria2 | libtorrent | libcurl | reqwest |
+| 平台 | TTHSD Next | aria2 | libtorrent | libcurl | reqwest |
 |------|----------|-------|------------|---------|---------|
 | Windows | ✅ 原生 | ✅ | ✅ | ✅ | ✅ |
 | Linux | ✅ 原生 | ✅ | ✅ | ✅ | ✅ |
@@ -106,7 +106,7 @@
 
 ### 平台支持亮点
 
-**TTHSNext 独家优势：**
+**TTHSD Next 独家优势：**
 
 1. **HarmonyOS 支持**
    - 市面唯一支持华为鸿蒙系统的下载 SDK
@@ -125,7 +125,7 @@
 
 ## 语言绑定对比
 
-| 语言 | TTHSNext | aria2 | libtorrent | libcurl | reqwest |
+| 语言 | TTHSD Next | aria2 | libtorrent | libcurl | reqwest |
 |------|----------|-------|------------|---------|---------|
 | Rust | ✅ 原生 | ❌ | ❌ | ✅ FFI | ✅ 原生 |
 | Python | ✅ 绑定 | ⚠️ RPC | ✅ 绑定 | ✅ 绑定 | ❌ |
@@ -138,7 +138,7 @@
 
 ### 语言绑定优势
 
-**TTHSNext 独特优势：**
+**TTHSD Next 独特优势：**
 
 1. **8 种语言原生绑定**
    - 不像 aria2 仅提供 RPC 接口
@@ -161,7 +161,7 @@
 
 | 引擎 | HTTP 下载 | BitTorrent 下载 | 备注 |
 |------|-----------|-----------------|------|
-| TTHSNext | ~10-15 MB | ~15-20 MB | Rust 零成本抽象 |
+| TTHSD Next | ~10-15 MB | ~15-20 MB | Rust 零成本抽象 |
 | aria2 | ~4 MB | ~9 MB | 极度精简 |
 | libtorrent | N/A | ~20-30 MB | BT 专用 |
 | libcurl | ~5-10 MB | N/A | 通用传输 |
@@ -171,7 +171,7 @@
 
 | 引擎 | 并发下载 | 吞吐量 | GC 停顿 |
 |------|----------|--------|---------|
-| TTHSNext | ⚡⚡⚡ | ⚡⚡⚡ | 🚫 零 |
+| TTHSD Next | ⚡⚡⚡ | ⚡⚡⚡ | 🚫 零 |
 | aria2 | ⚡⚡⚡ | ⚡⚡⚡ | 🚫 无 GC |
 | libtorrent | ⚡⚡⚡ | ⚡⚡⚡ | 🚫 无 GC |
 | libcurl | ⚡⚡ | ⚡⚡ | 🚫 无 GC |
@@ -179,7 +179,7 @@
 
 ### 性能优化亮点
 
-**TTHSNext 优势：**
+**TTHSD Next 优势：**
 
 1. **零 GC 停顿**
    - Rust 保证无运行时 GC
@@ -199,7 +199,7 @@
 
 ### 目标用户
 
-| 用户群体 | 需求 | TTHSNext 优势 |
+| 用户群体 | 需求 | TTHSD Next 优势 |
 |----------|------|---------------|
 | **桌面应用开发者** | 多协议下载 | 协议覆盖全面，原生集成 |
 | **游戏开发者** | 高性能、零 GC | Rust 实现，零停顿，Godot 支持 |
@@ -252,10 +252,10 @@
 
 ## 总结
 
-### TTHSNext 核心价值
+### TTHSD Next 核心价值
 
 ```
-TTHSNext = aria2 的协议丰富度
+TTHSD Next = aria2 的协议丰富度
           + libtorrent 的 P2P 能力
           + libcurl 的通用性
           + Rust 的极致性能

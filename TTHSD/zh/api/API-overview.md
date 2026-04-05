@@ -141,11 +141,16 @@ def callback(event_json_str, msg_json_str):
 |--------|----------|
 | [get_downloader](/zh/api/functions/get_downloader) | 创建下载器实例但不启动下载 |
 | [start_download](/zh/api/functions/start_download) | 创建下载器实例并立即启动下载 |
-| [start_download_ID](/zh/api/functions/start_download_ID) | 启动已创建的下载器（顺序下载） |
+| [start_download_id](/zh/api/functions/start_download_id) | 启动已创建的下载器（顺序下载） |
 | [start_multiple_downloads_id](/zh/api/functions/start_multiple_downloads_id) | 启动已创建的下载器（并行下载） |
 | [pause_download](/zh/api/functions/pause_download) | 暂停下载 |
 | [resume_download](/zh/api/functions/resume_download) | 恢复下载 |
 | [stop_download](/zh/api/functions/stop_download) | 停止下载并清理资源 |
+| [set_speed_limit](/zh/api/functions/set_speed_limit) | 设置下载速度限制 |
+| [set_proxy](/zh/api/functions/set_proxy) | 设置代理服务器 |
+| [set_retry_config](/zh/api/functions/set_retry_config) | 配置重试参数 |
+| [get_performance_stats](/zh/api/functions/get_performance_stats) | 获取性能统计数据 |
+| [free_string](/zh/api/functions/free_string) | 释放字符串内存 |
 
 ## TTHSD Next 的性能优势
 

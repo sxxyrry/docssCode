@@ -65,7 +65,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/TTHSDownaloder/TTHSDNext' }
+      { icon: 'github', link: 'https://github.com/TTHSDownloader/TTHSDNext' }
     ]
   }
   ,

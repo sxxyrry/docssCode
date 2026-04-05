@@ -14,5 +14,6 @@
 | `userAgent` | `char*` | User-Agent（可选，NULL 使用默认值①） |
 | `remoteCallbackUrl` | `char*` | 远程回调URL（可选） |
 | `useSocket` | `bool*` | 是否启用Socket通信（可选） |
+| `headersJson` | `char*` | 全局请求头 JSON（可选，NULL 不设置，如 `{"Referer": "https://example.com"}`） |
 
 ① 默认 User-Agent：`Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36`

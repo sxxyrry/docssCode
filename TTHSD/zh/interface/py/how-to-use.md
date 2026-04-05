@@ -62,13 +62,23 @@ def start_download(
     user_agent: str | None = None,
     remote_callback_url: str | None = None,
     use_socket: bool | None = None,
-    is_multiple: bool | None = None
+    is_multiple: bool | None = None,
+    headers: dict[str, str] | None = None,
+    task_headers: list[dict[str, str]] | None = None,
 ) -> int
 ```
+- **参数说明**:
+  - `urls`: 下载 URL 列表
+  - `save_paths`: 保存路径列表
+  - `thread_count`: 下载线程数（默认 64）
+  - `chunk_size_mb`: 分块大小 MB（默认 10）
+  - `callback`: 进度回调函数
+  - `headers`: 全局 Headers（对该下载器所有任务生效）
+  - `task_headers`: 每个任务的额外 Headers（与 urls 等长）
 - **返回**：下载器实例 ID（正整数），失败时返回 -1。
 
 #### `get_downloader(...) -> int`
-仅创建下载器（不启动），返回实例 ID。参数同 `start_download`（不含 `is_multiple`）。
+仅创建下载器（不启动），返回实例 ID。参数同 `start_download`。
 
 ### 2.3 控制下载
 所有控制方法均返回 `bool`，`True` 表示操作成功（DLL 返回 0），`False` 表示失败（如 ID 不存在）。
@@ -77,6 +87,12 @@ def start_download(
 - `pause_download(downloader_id: int) -> bool`：暂停下载
 - `resume_download(downloader_id: int) -> bool`：恢复下载
 - `stop_download(downloader_id: int) -> bool`：停止下载
+- `set_speed_limit(downloader_id: int, speed_limit_bps: int) -> bool`：设置速度限制
+- `set_proxy(downloader_id: int, proxy_url: str | None) -> bool`：设置代理
+- `set_retry_config(downloader_id: int, max_retries: int, retry_delay_ms: int, max_retry_delay_ms: int) -> bool`：配置重试
+
+### 2.4 性能统计
+- `get_performance_stats(downloader_id: int) -> dict`：获取性能统计信息
 
 ### 2.4 资源管理
 Python 接口会自动管理回调函数引用，无需手动清理资源。当下载器实例被销毁时，相关引用会被自动释放。
@@ -163,6 +179,70 @@ dl_id = dl.get_downloader(
 dl.start_multiple_downloads_by_id(dl_id)
 # ... 后续可暂停、恢复等
 # 资源会在 dl 对象被销毁时自动清理
+```
+
+### 4.3 使用 Headers
+```python
+# 全局 Headers（所有任务生效）
+with TTHSDownloader() as dl:
+    dl_id = dl.start_download(
+        urls=["https://example.com/file1.zip", "https://example.com/file2.zip"],
+        save_paths=["./downloads/file1.zip", "./downloads/file2.zip"],
+        headers={
+            "Authorization": "Bearer token123",
+            "X-Custom-Header": "custom-value"
+        }
+    )
+
+# 任务级别 Headers（每个任务单独设置）
+with TTHSDownloader() as dl:
+    dl_id = dl.start_download(
+        urls=["https://example.com/file1.zip", "https://example.com/file2.zip"],
+        save_paths=["./downloads/file1.zip", "./downloads/file2.zip"],
+        task_headers=[
+            {"X-Task-ID": "task-1"},
+            {"X-Task-ID": "task-2"}
+        ]
+    )
+
+# 混合使用（全局 + 任务级别）
+with TTHSDownloader() as dl:
+    dl_id = dl.start_download(
+        urls=["https://example.com/file1.zip", "https://example.com/file2.zip"],
+        save_paths=["./downloads/file1.zip", "./downloads/file2.zip"],
+        headers={"X-Global": "global-value"},
+        task_headers=[{"X-Task": "task1"}, None]
+    )
+```
+
+### 4.4 使用速度限制、代理、重试配置
+```python
+# 创建下载器
+dl_id = dl.get_downloader(
+    urls=["https://example.com/bigfile.iso"],
+    save_paths=["./downloads/bigfile.iso"],
+    thread_count=64
+)
+
+# 设置速度限制 (bytes/s)
+dl.set_speed_limit(dl_id, 1024 * 1024)  # 限制 1MB/s
+
+# 设置代理
+dl.set_proxy(dl_id, "http://proxy.example.com:8080")
+
+# 配置重试参数
+dl.set_retry_config(dl_id, max_retries=5, retry_delay_ms=2000, max_retry_delay_ms=60000)
+
+# 启动下载
+dl.start_download_by_id(dl_id)
+
+# 获取性能统计
+import time
+time.sleep(5)
+stats = dl.get_performance_stats(dl_id)
+print(f"当前速度: {stats.get('current_speed_mbps', 0)} MB/s")
+print(f"平均速度: {stats.get('average_speed_mbps', 0)} MB/s")
+print(f"峰值速度: {stats.get('peak_speed_mbps', 0)} MB/s")
 ```
 
 ---

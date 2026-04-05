@@ -79,7 +79,6 @@ export default defineConfig({
               { text: 'set_proxy', link: '/zh/api/functions/set_proxy' },
               { text: 'set_retry_config', link: '/zh/api/functions/set_retry_config' },
               { text: 'get_performance_stats', link: '/zh/api/functions/get_performance_stats' },
-              { text: 'free_string', link: '/zh/api/functions/free_string' }
             ]
           }
         ]
@@ -115,6 +114,7 @@ export default defineConfig({
             collapsed: true,
             items: [
               { text: ' Py 接口封装 怎么使用', link: '/zh/interface/py/how-to-use' },
+              { text: ' TTHSD Python 单元测试', link: '/zh/examples/interface/py/unit-test' },
             ]
           },
           {

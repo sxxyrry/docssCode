@@ -23,8 +23,8 @@ hero:
 features:
   - title: "🌐 7 种下载协议"
     details: "原生支持 HTTP/HTTPS、HTTP/3 (QUIC)、FTP、BitTorrent/Magnet、ED2K、Metalink 4.0"
-  - title: "🖥️ 5 大平台覆盖"
-    details: "Windows、Linux、macOS、Android、HarmonyOS 全平台动态库编译"
+  - title: "🖥️ 6 大平台覆盖"
+    details: "Windows、Linux、macOS、Android、IOS、HarmonyOS 全平台动态库编译"
   - title: "🔗 7+ 种语言绑定"
     details: "Rust、Python、Java/Kotlin、C#、Node.js、C/C++、Godot 原生调用"
   - title: "⚡ 极致性能"

@@ -19,10 +19,26 @@
     "url": "https://example.com/file.zip",
     "save_path": "/path/to/save/file.zip",
     "show_name": "文件显示名称",
-    "id": "unique-task-id-123"
+    "id": "unique-task-id-123",
+    "headers": {
+      "X-Custom-Header": "custom-value"
+    }
   }
 ]
 ```
+
+#### 任务字段说明
+
+| 字段 | 类型 | 必填 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `url` | string | 是 | 下载链接 |
+| `save_path` | string | 是 | 保存路径 |
+| `show_name` | string | 否 | 显示名称（默认为 URL 文件名） |
+| `id` | string | 否 | 任务唯一标识（自动生成 UUID） |
+| `headers` | object | 否 | 该任务额外的 HTTP 请求头 |
+
+> [!NOTE]
+> 任务中的 `headers` 会与下载器的全局 `headers` 合并，任务级别会覆盖全局同名 header。
 
 ### 回调函数定义
 
@@ -149,8 +165,7 @@ def callback(event_json_str, msg_json_str):
 | [set_speed_limit](/zh/api/functions/set_speed_limit) | 设置下载速度限制 |
 | [set_proxy](/zh/api/functions/set_proxy) | 设置代理服务器 |
 | [set_retry_config](/zh/api/functions/set_retry_config) | 配置重试参数 |
-| [get_performance_stats](/zh/api/functions/get_performance_stats) | 获取性能统计数据 |
-| [free_string](/zh/api/functions/free_string) | 释放字符串内存 |
+| [get_performance_stats](/zh/api/functions/get_performance_stats) | 获取性能统计信息 |
 
 ## TTHSD Next 的性能优势
 

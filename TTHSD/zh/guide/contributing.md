@@ -81,7 +81,7 @@ pip install -r requirements.txt
 cargo build --release
 ```
 
-输出文件: `target\release\tthsd.dll`
+输出文件: ***target\release\tthsd.dll***
 
 #### Linux
 
@@ -90,7 +90,7 @@ cargo build --release
 cargo build --release
 ```
 
-输出文件: `target/release/libtthsd.so`
+输出文件: ***target/release/libtthsd.so***
 
 #### macOS
 
@@ -99,7 +99,7 @@ cargo build --release
 cargo build --release
 ```
 
-输出文件: `target/release/libtthsd.dylib`
+输出文件: ***target/release/libtthsd.dylib***
 
 ### 编译 Android 库（可选）
 
@@ -118,7 +118,7 @@ chmod +x build-all-android.sh
 
 ### 跨平台编译
 
-可以使用 `cargo-ndk` 工具简化 Android 编译：
+可以使用 ***cargo-ndk*** 工具简化 Android 编译：
 
 ```bash
 cargo install cargo-ndk
@@ -163,14 +163,14 @@ TTHSD Next 使用以下主要的 Rust 库：
 ```
 
 **类型 (type):**
-- `feat`: 新功能
-- `fix`: 修复 bug
-- `docs`: 文档更新
-- `style`: 代码格式（不影响功能）
-- `refactor`: 重构
-- `test`: 测试相关
-- `chore`: 构建或辅助工具
-- `perf`: 性能优化
+- ***feat***: 新功能
+- ***fix***: 修复 bug
+- ***docs***: 文档更新
+- ***style***: 代码格式（不影响功能）
+- ***refactor***: 重构
+- ***test***: 测试相关
+- ***chore***: 构建或辅助工具
+- ***perf***: 性能优化
 
 **示例:**
 
@@ -188,18 +188,18 @@ Closes #123
 ### Pull Request 流程
 
 1. Fork 本项目到您的 GitHub 账户
-2. 从 `develop` 分支创建新的功能分支
+2. 从 ***develop*** 分支创建新的功能分支
 3. 进行开发和测试
 4. 运行测试确保没有回归
 5. 提交代码到您的 Fork 仓库
-6. 创建 Pull Request 到项目的 `develop` 分支
+6. 创建 Pull Request 到项目的 ***develop*** 分支
 7. 等待代码审查和反馈
 
 ### Pull Request 要求
 
 - **描述清晰**：详细说明更改的目的和内容
 - **测试通过**：确保所有测试通过
-- **代码规范**：遵循 Rust 的代码风格（`cargo fmt`）
+- **代码规范**：遵循 Rust 的代码风格（***cargo fmt***）
 - **文档更新**：如有必要，更新相关文档
 - **无冲突**：确保与目标分支无冲突
 - **性能考虑**：对于性能敏感的代码，提供性能对比数据
@@ -261,8 +261,8 @@ Closes #123
 
 ### Rust 代码
 
-- 使用 `cargo fmt` 格式化代码
-- 使用 `cargo clippy` 进行代码检查
+- 使用 ***cargo fmt*** 格式化代码
+- 使用 ***cargo clippy*** 进行代码检查
 - 遵循 Rust 官方编码规范
 - 添加必要的注释和文档
 - 使用有意义的变量和函数名
@@ -311,11 +311,11 @@ Closes #123
 
 在提交 PR 之前，请确保：
 
-1. **单元测试**：运行 `cargo test`
+1. **单元测试**：运行 ***cargo test***
 2. **集成测试**：在不同平台上测试
 3. **性能测试**：确保没有性能回归
-4. **格式检查**：运行 `cargo fmt --check`
-5. **代码检查**：运行 `cargo clippy`
+4. **格式检查**：运行 ***cargo fmt --check***
+5. **代码检查**：运行 ***cargo clippy***
 
 ## 许可证
 

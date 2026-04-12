@@ -118,7 +118,7 @@ eDonkey2000 协议链接的下载，无需安装传统电驴客户端。
 
 **核心特性：**
 - 解析标准 ***ed2k://*** URL 格式
-- 通过 HTTP 网关 (`https://ed2k.lyoko.io/hash/<hash>`) 转换为 HTTP 下载
+- 通过 HTTP 网关 (***https://ed2k.lyoko.io/hash/<\hash>***) 转换为 HTTP 下载
 - 自动文件名 percent-decode
 
 **URL 格式：**
@@ -187,9 +187,9 @@ android = []
 ```
 
 **使用示例**：
-- 启用所有协议（默认）：`default = ["full"]`
-- 仅启用 HTTP/3：`default = ["http3"]`
-- 启用 HTTP + FTP：`default = ["http3", "ftp"]`
+- 启用所有协议（默认）：***default = ["full"]***
+- 仅启用 HTTP/3：***default = ["http3"]***
+- 启用 HTTP + FTP：***default = ["http3", "ftp"]***
 
 ---
 

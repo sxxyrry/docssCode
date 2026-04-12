@@ -2,11 +2,11 @@
 
 ## 事件概述
 
-`msg`事件用于传递各种系统消息和通知信息，包括状态变更、警告、错误提示等非进度相关的消息内容。
+***msg***事件用于传递各种系统消息和通知信息，包括状态变更、警告、错误提示等非进度相关的消息内容。
 
 ## 事件特征
 
-- **事件类型**：`msg`
+- **事件类型**：***msg***
 - **触发时机**：系统需要发送通知或警告时
 - **触发频率**：不定期触发，根据实际需要发送
 
@@ -31,7 +31,7 @@
 ## Msg字段信息
 
 
-`msg` 事件用于传递系统消息，源码中的 `msg` 字段如下：
+***msg*** 事件用于传递系统消息，源码中的 ***msg*** 字段如下：
 
 ```json
 {
@@ -57,14 +57,14 @@ def callback_func(event_dict, msg_dict):
 ## 版本差异
 
 ### 核心版本 0.5.0
-在 TTHSD Core 0.5.0 版本中，某些错误情况（如 `startDownload_ID` 或 `startMultipleDownloads_ID` 失败）会以 `EventTypeMsg` 形式发送错误事件，而不是 `EventTypeErr`。此时错误信息存储在 `msg["Text"]` 字段中。
+在 TTHSD Core 0.5.0 版本中，某些错误情况（如 ***startDownload_ID*** 或 ***startMultipleDownloads_ID*** 失败）会以 ***EventTypeMsg*** 形式发送错误事件，而不是 ***EventTypeErr***。此时错误信息存储在 ***msg["Text"]*** 字段中。
 
 ### 核心版本 0.5.1
-所有错误统一以 `EventTypeErr` 事件类型发送，错误信息统一存储在 `msg["Error"]` 字段中。
+所有错误统一以 ***EventTypeErr*** 事件类型发送，错误信息统一存储在 ***msg["Error"]*** 字段中。
 
 ---
 
-> **重要提示**：如果您使用的是 TTHSD Core 0.5.0 版本，需要同时监听 `EventTypeErr` 和 `EventTypeMsg` 类型的事件来获取完整的错误信息：
+> **重要提示**：如果您使用的是 TTHSD Core 0.5.0 版本，需要同时监听 ***EventTypeErr*** 和 ***EventTypeMsg*** 类型的事件来获取完整的错误信息：
 > ```python
 > def callback_func(event_dict, msg_dict):
 >     event_type = event_dict.get('Type', '')

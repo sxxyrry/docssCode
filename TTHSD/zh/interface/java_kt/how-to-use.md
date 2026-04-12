@@ -2,7 +2,7 @@
 
 > [!TIP]
 > 本文档介绍的是 **TTHSD Next**（Rust 版本）的 Java / Kotlin 接口。
-> 源码位于 [`bindings/java/`](https://github.com/TTHSDownloader/TTHSDNext/tree/main/bindings/java)
+> 源码位于 [***bindings/java/***](https://github.com/TTHSDownloader/TTHSDNext/tree/main/bindings/java)
 
 ---
 
@@ -19,8 +19,8 @@
 └──────────────────┘
 ```
 
-- **桌面端 (Windows/Linux/macOS)**：通过 **JNA** 加载 `tthsd.dll` / `tthsd.so` / `tthsd.dylib`
-- **Android/HarmonyOS**：通过 **JNI** 调用 `tthsd_android.so` / `tthsd_harmonyos.so`
+- **桌面端 (Windows/Linux/macOS)**：通过 **JNA** 加载 ***tthsd.dll*** / ***tthsd.so*** / ***tthsd.dylib***
+- **Android/HarmonyOS**：通过 **JNI** 调用 ***tthsd_android.so*** / ***tthsd_harmonyos.so***
 
 ---
 
@@ -53,20 +53,20 @@ println("下载 ID: $id")
 
 ## API 参考
 
-### `TTHSDownloader`
+### ***TTHSDownloader***
 
 | 方法 | 返回值 | 说明 |
 |------|--------|------|
-| `startDownload(urls, savePaths, ...)` | `Int` | 创建并启动下载 |
-| `getDownloader(urls, savePaths, ...)` | `Int` | 创建不启动 |
-| `startDownloadById(id)` | `Boolean` | 顺序启动 |
-| `startMultipleDownloadsById(id)` | `Boolean` | 并行启动 |
-| `pauseDownload(id)` | `Boolean` | 暂停 |
-| `resumeDownload(id)` | `Boolean` | 恢复 |
-| `stopDownload(id)` | `Boolean` | 停止并销毁 |
-| `close()` | — | 释放资源 (`AutoCloseable`) |
+| ***startDownload(urls, savePaths, ...)*** | ***Int*** | 创建并启动下载 |
+| ***getDownloader(urls, savePaths, ...)*** | ***Int*** | 创建不启动 |
+| ***startDownloadById(id)*** | ***Boolean*** | 顺序启动 |
+| ***startMultipleDownloadsById(id)*** | ***Boolean*** | 并行启动 |
+| ***pauseDownload(id)*** | ***Boolean*** | 暂停 |
+| ***resumeDownload(id)*** | ***Boolean*** | 恢复 |
+| ***stopDownload(id)*** | ***Boolean*** | 停止并销毁 |
+| ***close()*** | — | 释放资源 (***AutoCloseable***) |
 
-### `startDownload` 完整参数
+### ***startDownload*** 完整参数
 
 ```kotlin
 fun startDownload(
@@ -115,7 +115,7 @@ dependencies {
 
 ## GC 安全
 
-封装类内部维护 `callbackRefs: MutableMap<Int, ProgressCallback>`，持有所有 JNA 回调引用。**务必在下载完成后调用 `stopDownload()` 或 `close()`**，否则回调引用不会被释放。
+封装类内部维护 ***callbackRefs: MutableMap<Int, ProgressCallback>***，持有所有 JNA 回调引用。**务必在下载完成后调用 ***stopDownload()*** 或 ***close()*****，否则回调引用不会被释放。
 
 **下一步**
 

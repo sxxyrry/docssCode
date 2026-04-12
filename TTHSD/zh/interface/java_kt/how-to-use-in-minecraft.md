@@ -24,7 +24,7 @@ dependencies {
 }
 ```
 
-将 TTHSD 动态库打包到 JAR 的 `resources/native/` 目录：
+将 TTHSD 动态库打包到 JAR 的 ***resources/native/*** 目录：
 
 ```
 src/main/resources/native/
@@ -33,7 +33,7 @@ src/main/resources/native/
 └── macos-aarch64/libtthsd.dylib
 ```
 
-`NativeLibraryLoader.kt` 会自动从 JAR 中提取动态库到临时目录。
+***NativeLibraryLoader.kt*** 会自动从 JAR 中提取动态库到临时目录。
 
 ---
 
@@ -109,5 +109,5 @@ val id = dl.startDownload(
 
 ## 注意事项
 
-- **线程安全**：TTHSD 内部使用 Tokio 异步运行时，回调会在 Rust 的异步线程中触发。如果需要更新 GUI，请在回调中使用 `SwingUtilities.invokeLater()` 或 `Platform.runLater()` 切换到 UI 线程
-- **JVM 退出**：确保在 JVM 退出前调用 `close()` 释放资源，否则动态库可能不会正常卸载
+- **线程安全**：TTHSD 内部使用 Tokio 异步运行时，回调会在 Rust 的异步线程中触发。如果需要更新 GUI，请在回调中使用 ***SwingUtilities.invokeLater()*** 或 ***Platform.runLater()*** 切换到 UI 线程
+- **JVM 退出**：确保在 JVM 退出前调用 ***close()*** 释放资源，否则动态库可能不会正常卸载

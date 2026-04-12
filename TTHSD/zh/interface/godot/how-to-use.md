@@ -2,14 +2,14 @@
 
 > [!TIP]
 > 本文档介绍的是 **TTHSD Next** 的 Godot 4 GDExtension 封装。
-> 源码位于 [`bindings/godot/`](https://github.com/TTHSDownloader/TTHSDNext/tree/main/bindings/godot)
+> 源码位于 [***bindings/godot/***](https://github.com/TTHSDownloader/TTHSDNext/tree/main/bindings/godot)
 
 ---
 
 ## 特性
 
-- **Godot Signal**：4 种信号，直接在 GDScript 中 `connect`
-- **RefCounted**：继承自 `RefCounted`，Godot 自动管理内存
+- **Godot Signal**：4 种信号，直接在 GDScript 中 ***connect***
+- **RefCounted**：继承自 ***RefCounted***，Godot 自动管理内存
 - **跨平台**：支持 Windows / Linux / macOS
 
 ---
@@ -75,23 +75,23 @@ func _on_event(event: Dictionary, _data: Dictionary) -> void:
 
 | 方法 | 参数 | 返回值 | 说明 |
 |------|------|--------|------|
-| `load_library(path)` | `String` | `bool` | 加载动态库（空字符串自动搜索） |
-| `start_download(urls, paths, threads, chunk)` | `Array[String]` × 2 + `int` × 2 | `int` | 创建并启动 |
-| `get_downloader(urls, paths, threads, chunk)` | 同上 | `int` | 创建不启动 |
-| `start_download_by_id(id)` | `int` | `bool` | 顺序启动 |
-| `start_multiple_downloads_by_id(id)` | `int` | `bool` | 并行启动 |
-| `pause_download(id)` | `int` | `bool` | 暂停 |
-| `resume_download(id)` | `int` | `bool` | 恢复 |
-| `stop_download(id)` | `int` | `bool` | 停止销毁 |
+| ***load_library(path)*** | ***String*** | ***bool*** | 加载动态库（空字符串自动搜索） |
+| ***start_download(urls, paths, threads, chunk)*** | ***Array[String]*** × 2 + ***int*** × 2 | ***int*** | 创建并启动 |
+| ***get_downloader(urls, paths, threads, chunk)*** | 同上 | ***int*** | 创建不启动 |
+| ***start_download_by_id(id)*** | ***int*** | ***bool*** | 顺序启动 |
+| ***start_multiple_downloads_by_id(id)*** | ***int*** | ***bool*** | 并行启动 |
+| ***pause_download(id)*** | ***int*** | ***bool*** | 暂停 |
+| ***resume_download(id)*** | ***int*** | ***bool*** | 恢复 |
+| ***stop_download(id)*** | ***int*** | ***bool*** | 停止销毁 |
 
 ### Signal 信号
 
 | Signal | 触发条件 | 参数 |
 |--------|----------|------|
-| `on_progress(event, data)` | 进度更新（`update`） | `Dictionary` × 2 |
-| `on_error(event, data)` | 下载错误（`err`） | `Dictionary` × 2 |
-| `on_finished(event, data)` | 任务完成（`end` / `endOne`） | `Dictionary` × 2 |
-| `on_event(event, data)` | 其他事件（`start` / `startOne` / `msg`） | `Dictionary` × 2 |
+| ***on_progress(event, data)*** | 进度更新（***update***） | ***Dictionary*** × 2 |
+| ***on_error(event, data)*** | 下载错误（***err***） | ***Dictionary*** × 2 |
+| ***on_finished(event, data)*** | 任务完成（***end*** / ***endOne***） | ***Dictionary*** × 2 |
+| ***on_event(event, data)*** | 其他事件（***start*** / ***startOne*** / ***msg***） | ***Dictionary*** × 2 |
 
 ---
 
@@ -99,9 +99,9 @@ func _on_event(event: Dictionary, _data: Dictionary) -> void:
 
 ### 依赖
 
-- Godot 4.x C++ GDExtension SDK (`godot-cpp`)
+- Godot 4.x C++ GDExtension SDK (***godot-cpp***)
 - [nlohmann/json](https://github.com/nlohmann/json) (header-only)
-- `uuid` 库 (`libuuid-dev` on Linux)
+- ***uuid*** 库 (***libuuid-dev*** on Linux)
 
 ### 编译
 
@@ -113,7 +113,7 @@ cmake --build .
 
 ### 安装到 Godot 项目
 
-1. 将编译产物复制到 `project/addons/tthsd/bin/`
-2. 将 `tthsd.dll` / `libtthsd.so` 也复制到同目录
+1. 将编译产物复制到 ***project/addons/tthsd/bin/***
+2. 将 ***tthsd.dll*** / ***libtthsd.so*** 也复制到同目录
 3. 在 Godot 编辑器中启用插件
 ```

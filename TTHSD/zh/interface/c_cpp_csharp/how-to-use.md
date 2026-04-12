@@ -2,7 +2,7 @@
 
 > [!TIP]
 > 本文档介绍的是 **TTHSD Next**（Rust 版本）的 C / C++ / C# 接口。
-> 源码位于 [`bindings/c/`](https://github.com/TTHSDownloader/TTHSDNext/tree/main/bindings/c)
+> 源码位于 [***bindings/c/***](https://github.com/TTHSDownloader/TTHSDNext/tree/main/bindings/c)
 
 ---
 
@@ -10,13 +10,13 @@
 
 | 文件 | 说明 |
 |------|------|
-| `tthsd.h` | 标准 C 头文件——声明所有 C ABI 导出函数及回调类型 |
-| `TTHSDownloader.hpp` | C++ header-only 封装类——RAII 持有库句柄，`std::function` 回调 |
-| `csharp/TTHSDownloader.cs` | C# P/Invoke 封装——`async/await` 事件流，支持 WPF / AvaloniaUI / Unity |
+| ***tthsd.h*** | 标准 C 头文件——声明所有 C ABI 导出函数及回调类型 |
+| ***TTHSDownloader.hpp*** | C++ header-only 封装类——RAII 持有库句柄，***std::function*** 回调 |
+| ***csharp/TTHSDownloader.cs*** | C# P/Invoke 封装——***async/await*** 事件流，支持 WPF / AvaloniaUI / Unity |
 
 ---
 
-## C 接口 (`tthsd.h`)
+## C 接口 (***tthsd.h***)
 
 ### 回调类型
 
@@ -25,22 +25,22 @@ typedef void (*TTHSD_Callback)(const char* event_json, const char* data_json);
 ```
 
 回调参数均为 JSON 字符串：
-- `event_json`: 事件元数据，包含 `Type`、`Name`、`ShowName`、`ID` 字段
-- `data_json`: 附带数据，根据事件类型包含 `Downloaded`/`Total`（进度）或 `Error`（错误）等
+- ***event_json***: 事件元数据，包含 ***Type***、***Name***、***ShowName***、***ID*** 字段
+- ***data_json***: 附带数据，根据事件类型包含 ***Downloaded***/***Total***（进度）或 ***Error***（错误）等
 
 ### 导出函数
 
 | 函数 | 说明 | 返回值 |
 |------|------|--------|
-| `start_download(...)` | 创建并**立即启动**下载器 | 下载器 ID（正整数），失败返回 -1 |
-| `get_downloader(...)` | 创建下载器实例（**不启动**） | 同上 |
-| `start_download_id(id)` | 按 ID 顺序启动下载 | 0=成功，-1=失败 |
-| `start_multiple_downloads_id(id)` | 按 ID 并行启动下载 | 0=成功，-1=失败 |
-| `pause_download(id)` | 暂停下载 | 0=成功，-1=失败 |
-| `resume_download(id)` | 恢复下载（核心 ≥0.5.1） | 0=成功，-1=失败 |
-| `stop_download(id)` | 停止并销毁下载器 | 0=成功，-1=失败 |
+| ***start_download(...)*** | 创建并**立即启动**下载器 | 下载器 ID（正整数），失败返回 -1 |
+| ***get_downloader(...)*** | 创建下载器实例（**不启动**） | 同上 |
+| ***start_download_id(id)*** | 按 ID 顺序启动下载 | 0=成功，-1=失败 |
+| ***start_multiple_downloads_id(id)*** | 按 ID 并行启动下载 | 0=成功，-1=失败 |
+| ***pause_download(id)*** | 暂停下载 | 0=成功，-1=失败 |
+| ***resume_download(id)*** | 恢复下载（核心 ≥0.5.1） | 0=成功，-1=失败 |
+| ***stop_download(id)*** | 停止并销毁下载器 | 0=成功，-1=失败 |
 
-### `start_download` 参数
+### ***start_download*** 参数
 
 ```c
 int start_download(
@@ -72,15 +72,15 @@ int start_download(
 
 ---
 
-## C++ 封装 (`TTHSDownloader.hpp`)
+## C++ 封装 (***TTHSDownloader.hpp***)
 
 Header-only 封装，依赖 [nlohmann/json](https://github.com/nlohmann/json)，要求 **C++17** 及以上。
 
 ### 特性
 
-- **RAII**：构造时 `load()` 加载库，析构时自动卸载
-- **跨平台**：自动选择 `LoadLibrary` (Windows) 或 `dlopen` (Linux/macOS)
-- **回调**：使用 `std::function<void(const json&, const json&)>` 接收事件
+- **RAII**：构造时 ***load()*** 加载库，析构时自动卸载
+- **跨平台**：自动选择 ***LoadLibrary*** (Windows) 或 ***dlopen*** (Linux/macOS)
+- **回调**：使用 ***std::function<\void(const json&, const json&)>*** 接收事件
 
 ### 快速开始
 
@@ -108,7 +108,7 @@ int main() {
 }
 ```
 
-### `DownloadParams` 结构体
+### ***DownloadParams*** 结构体
 
 ```cpp
 struct DownloadParams {
@@ -124,14 +124,14 @@ struct DownloadParams {
 
 ---
 
-## C# 封装 (`TTHSDownloader.cs`)
+## C# 封装 (***TTHSDownloader.cs***)
 
-P/Invoke 封装，支持 `.NET 6.0+`，使用 `System.Text.Json` + `System.Threading.Channels`。
+P/Invoke 封装，支持 ***.NET 6.0+***，使用 ***System.Text.Json*** + ***System.Threading.Channels***。
 
 ### 特性
 
-- **async/await 事件流**：支持 `await foreach` 遍历下载事件
-- **IAsyncDisposable**：支持 `await using` 语法自动清理资源
+- **async/await 事件流**：支持 ***await foreach*** 遍历下载事件
+- **IAsyncDisposable**：支持 ***await using*** 语法自动清理资源
 - **GC 安全**：内部维护委托引用字典，防止 P/Invoke 回调被 GC 回收
 
 ### 快速开始
@@ -170,13 +170,13 @@ await foreach (var ev in events)
 
 | 方法 | 返回值 | 说明 |
 |------|--------|------|
-| `StartDownload(urls, paths, ...)` | `(int Id, IAsyncEnumerable<DownloadEventArgs>)` | 创建并启动 |
-| `GetDownloader(urls, paths, ...)` | 同上 | 创建不启动 |
-| `StartDownloadById(id)` | `bool` | 顺序启动 |
-| `StartMultipleDownloadsById(id)` | `bool` | 并行启动 |
-| `PauseDownload(id)` | `bool` | 暂停 |
-| `ResumeDownload(id)` | `bool` | 恢复 |
-| `StopDownload(id)` | `bool` | 停止并销毁 |
+| ***StartDownload(urls, paths, ...)*** | ***(int Id, IAsyncEnumerable<\DownloadEventArgs>)*** | 创建并启动 |
+| ***GetDownloader(urls, paths, ...)*** | 同上 | 创建不启动 |
+| ***StartDownloadById(id)*** | ***bool*** | 顺序启动 |
+| ***StartMultipleDownloadsById(id)*** | ***bool*** | 并行启动 |
+| ***PauseDownload(id)*** | ***bool*** | 暂停 |
+| ***ResumeDownload(id)*** | ***bool*** | 恢复 |
+| ***StopDownload(id)*** | ***bool*** | 停止并销毁 |
 
 ---
 
@@ -184,10 +184,10 @@ await foreach (var ev in events)
 
 | Type | 说明 | data 字段 |
 |------|------|-----------|
-| `start` | 下载会话开始 | — |
-| `startOne` | 单个任务开始 | `URL`, `SavePath`, `ShowName`, `Index`, `Total` |
-| `update` | 进度更新 | `Downloaded`, `Total` |
-| `endOne` | 单个任务完成 | `URL`, `SavePath`, `ShowName`, `Index`, `Total` |
-| `end` | 全部任务完成 | — |
-| `msg` | 消息通知 | `Text` |
-| `err` | 错误 | `Error` |
+| ***start*** | 下载会话开始 | — |
+| ***startOne*** | 单个任务开始 | ***URL***, ***SavePath***, ***ShowName***, ***Index***, ***Total*** |
+| ***update*** | 进度更新 | ***Downloaded***, ***Total*** |
+| ***endOne*** | 单个任务完成 | ***URL***, ***SavePath***, ***ShowName***, ***Index***, ***Total*** |
+| ***end*** | 全部任务完成 | — |
+| ***msg*** | 消息通知 | ***Text*** |
+| ***err*** | 错误 | ***Error*** |

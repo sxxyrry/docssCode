@@ -5,14 +5,14 @@
 
 | 参数 | 类型 | 说明 |
 |------|------|------|
-| `id` | `int` | 下载器实例 ID |
-| `proxyUrl` | `char*` | 代理服务器 URL（可选，NULL 表示不使用代理） |
+| ***id*** | ***int*** | 下载器实例 ID |
+| ***proxyUrl*** | ***char**** | 代理服务器 URL（可选，NULL 表示不使用代理） |
 
 ### 支持的代理协议
 
-- `http://proxy:port` - HTTP 代理
-- `https://proxy:port` - HTTPS 代理
-- `socks5://proxy:port` - SOCKS5 代理
+- ***http://proxy:port*** - HTTP 代理
+- ***https://proxy:port*** - HTTPS 代理
+- ***socks5://proxy:port*** - SOCKS5 代理
 
 ### 使用示例
 

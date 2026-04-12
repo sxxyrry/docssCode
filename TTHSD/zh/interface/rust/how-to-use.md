@@ -2,14 +2,14 @@
 
 > [!TIP]
 > 本文档介绍的是 **TTHSD Next** 的 Rust 封装 Crate。
-> 源码位于 [`bindings/rust/`](https://github.com/TTHSDownloader/TTHSDNext/tree/main/bindings/rust)
+> 源码位于 [***bindings/rust/***](https://github.com/TTHSDownloader/TTHSDNext/tree/main/bindings/rust)
 
 ---
 
 ## 特性
 
-- **安全封装**：所有 `unsafe` FFI 调用封装在内部，对外暴露 safe API
-- **异步事件流**：通过 `tokio::sync::mpsc::UnboundedReceiver` 接收下载事件
+- **安全封装**：所有 ***unsafe*** FFI 调用封装在内部，对外暴露 safe API
+- **异步事件流**：通过 ***tokio::sync::mpsc::UnboundedReceiver*** 接收下载事件
 - **libloading**：运行时动态加载，无需链接时依赖
 
 ---
@@ -29,7 +29,7 @@ TthsdRaw                ← ffi.rs (unsafe FFI + libloading)
 tthsd.dll / libtthsd.so ← Rust 编译的动态库
 ```
 
-**回调路由**：C 回调 `global_c_callback()` 收到事件后，通过全局 `SENDER_MAP` 广播到所有已注册的 `mpsc::UnboundedSender`。
+**回调路由**：C 回调 ***global_c_callback()*** 收到事件后，通过全局 ***SENDER_MAP*** 广播到所有已注册的 ***mpsc::UnboundedSender***。
 
 ---
 
@@ -71,20 +71,20 @@ async fn main() {
 
 ## API 参考
 
-### `TTHSDownloader`
+### ***TTHSDownloader***
 
 | 方法 | 返回值 | 说明 |
 |------|--------|------|
-| `load(path)` | `Result<Self>` | 加载动态库（`None` 自动搜索） |
-| `start_download(urls, paths, opts)` | `Result<(i32, Receiver)>` | 创建并启动 |
-| `get_downloader(urls, paths, opts)` | `Result<(i32, Receiver)>` | 创建不启动 |
-| `start_download_by_id(id)` | `bool` | 顺序启动 |
-| `start_multiple_downloads_by_id(id)` | `bool` | 并行启动 |
-| `pause_download(id)` | `bool` | 暂停 |
-| `resume_download(id)` | `bool` | 恢复 |
-| `stop_download(id)` | `bool` | 停止并销毁 |
+| ***load(path)*** | ***Result<\Self>*** | 加载动态库（***None*** 自动搜索） |
+| ***start_download(urls, paths, opts)*** | ***Result<(i32, Receiver)>*** | 创建并启动 |
+| ***get_downloader(urls, paths, opts)*** | ***Result<(i32, Receiver)>*** | 创建不启动 |
+| ***start_download_by_id(id)*** | ***bool*** | 顺序启动 |
+| ***start_multiple_downloads_by_id(id)*** | ***bool*** | 并行启动 |
+| ***pause_download(id)*** | ***bool*** | 暂停 |
+| ***resume_download(id)*** | ***bool*** | 恢复 |
+| ***stop_download(id)*** | ***bool*** | 停止并销毁 |
 
-### `DownloadOptions`
+### ***DownloadOptions***
 
 ```rust
 pub struct DownloadOptions {

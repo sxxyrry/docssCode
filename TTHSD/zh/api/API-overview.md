@@ -11,7 +11,7 @@
 
 ### 任务数据结构 (Task Data)
 
-传递给 `start_download` 等函数的任务列表必须是 JSON 格式字符串：
+传递给 ***start_download*** 等函数的任务列表必须是 JSON 格式字符串：
 
 ```json
 [
@@ -31,14 +31,14 @@
 
 | 字段 | 类型 | 必填 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `url` | string | 是 | 下载链接 |
-| `save_path` | string | 是 | 保存路径 |
-| `show_name` | string | 否 | 显示名称（默认为 URL 文件名） |
-| `id` | string | 否 | 任务唯一标识（自动生成 UUID） |
-| `headers` | object | 否 | 该任务额外的 HTTP 请求头 |
+| ***url*** | string | 是 | 下载链接 |
+| ***save_path*** | string | 是 | 保存路径 |
+| ***show_name*** | string | 否 | 显示名称（默认为 URL 文件名） |
+| ***id*** | string | 否 | 任务唯一标识（自动生成 UUID） |
+| ***headers*** | object | 否 | 该任务额外的 HTTP 请求头 |
 
 > [!NOTE]
-> 任务中的 `headers` 会与下载器的全局 `headers` 合并，任务级别会覆盖全局同名 header。
+> 任务中的 ***headers*** 会与下载器的全局 ***headers*** 合并，任务级别会覆盖全局同名 header。
 
 ### 回调函数定义
 
@@ -58,37 +58,37 @@ def callback(event_json_str, msg_json_str):
 
 ## 事件与消息结构 (Event & Message)
 
-回调函数的两个参数 `event` 和 `msg` 均为 JSON 格式字符串。
+回调函数的两个参数 ***event*** 和 ***msg*** 均为 JSON 格式字符串。
 
 ### 1. 事件结构 (Event)
 
-`Event` 对象描述了当前发生的事件类型和元数据。
+***Event*** 对象描述了当前发生的事件类型和元数据。
 
 | 字段 | 类型 | 说明 | 注意事项 |
 | :--- | :--- | :--- | :--- |
-| `Type` | string | 事件类型 | `start`, `startOne`, `update`, `endOne`, `end`, `msg`, `err` |
-| `Name` | string | 事件名称 | 仅在部分事件中包含（如 `msg` 类型可能包含 "错误"、"停止" 等） |
-| `ShowName` | string | 显示名称 | `update` 和 `start`/`end` 事件中为空字符串 |
-| `ID` | string | 任务 ID | `update` 事件中包含对应任务 ID |
+| ***Type*** | string | 事件类型 | ***start***, ***startOne***, ***update***, ***endOne***, ***end***, ***msg***, ***err*** |
+| ***Name*** | string | 事件名称 | 仅在部分事件中包含（如 ***msg*** 类型可能包含 "错误"、"停止" 等） |
+| ***ShowName*** | string | 显示名称 | ***update*** 和 ***start***/***end*** 事件中为空字符串 |
+| ***ID*** | string | 任务 ID | ***update*** 事件中包含对应任务 ID |
 
 **事件类型详解**:
 
-- `start`: 批量任务开始（ID为空）
-- `startOne`: 单个文件开始（包含完整 ID 和 ShowName）
-- `update`: 进度更新（**包含任务 ID**）
-- `endOne`: 单个文件结束（包含完整 ID 和 ShowName）
-- `end`: 批量任务结束（ID为空）
-- `msg`: 消息通知（包括错误、暂停、恢复、停止等状态）
-- `err`: 错误通知
+- ***start***: 批量任务开始（ID为空）
+- ***startOne***: 单个文件开始（包含完整 ID 和 ShowName）
+- ***update***: 进度更新（**包含任务 ID**）
+- ***endOne***: 单个文件结束（包含完整 ID 和 ShowName）
+- ***end***: 批量任务结束（ID为空）
+- ***msg***: 消息通知（包括错误、暂停、恢复、停止等状态）
+- ***err***: 错误通知
 
 ### 2. 消息结构 (Msg)
 
-`Msg` 对象的内容取决于 `Event.Type`，且在 `msg` 类型下对应的 Key 可能不同。
+***Msg*** 对象的内容取决于 ***Event.Type***，且在 ***msg*** 类型下对应的 Key 可能不同。
 
-#### `start` / `end`
-- **Msg 内容**: 空对象 `{}`
+#### ***start*** / ***end***
+- **Msg 内容**: 空对象 ***{}***
 
-#### `startOne` / `endOne`
+#### ***startOne*** / ***endOne***
 - **Msg 内容**:
 ```json
 {
@@ -100,7 +100,7 @@ def callback(event_json_str, msg_json_str):
 }
 ```
 
-#### `update`
+#### ***update***
 - **Msg 内容**:
 ```json
 {
@@ -109,8 +109,8 @@ def callback(event_json_str, msg_json_str):
 }
 ```
 
-#### `msg`
-`msg` 类型的事件用于传递各种状态信息，其 JSON Key 固定为 "Text"
+#### ***msg***
+***msg*** 类型的事件用于传递各种状态信息，其 JSON Key 固定为 "Text"
 
 - **Msg 内容**:
 ```json
@@ -123,8 +123,8 @@ def callback(event_json_str, msg_json_str):
 { "Text": "下载已恢复" }
 ```
 
-#### `err`
-`err` 类型的事件用于传递错误信息，其 JSON Key 固定为 "Error"
+#### ***err***
+***err*** 类型的事件用于传递错误信息，其 JSON Key 固定为 "Error"
 
 - **Msg 内容**:
 ```json
@@ -134,20 +134,20 @@ def callback(event_json_str, msg_json_str):
 ## 通用规则
 
 ### 内存管理 (C/C++ 调用者)
-- `tasksData` 指向的内存需在调用期间保持有效。
-- 回调函数中的 `event` 和 `msg` 指针仅在回调执行期间有效，不要在回调外部保存这些指针。
-- `stop_download` 会清理下载器内部所有资源，包括异步任务和网络连接，当前下载器也会被销毁。
+- ***tasksData*** 指向的内存需在调用期间保持有效。
+- 回调函数中的 ***event*** 和 ***msg*** 指针仅在回调执行期间有效，不要在回调外部保存这些指针。
+- ***stop_download*** 会清理下载器内部所有资源，包括异步任务和网络连接，当前下载器也会被销毁。
 - 在 Python 接口封装 端调用 close() 后，应确保不再使用对应的下载器 ID。
 - 暂停/恢复功能在并行下载（is_multiple=true）时可能存在限制，建议顺序下载时使用暂停/恢复功能。
 
 ### 线程安全
 - API 函数是线程安全的。
-- 可以同时管理多个不同的 `download` 实例。
-- 对同一个 `download ID` 的操作（如 暂停 -> 恢复）应顺序执行。
+- 可以同时管理多个不同的 ***download*** 实例。
+- 对同一个 ***download ID*** 的操作（如 暂停 -> 恢复）应顺序执行。
 
 ### 错误处理
-- API 函数返回 `-1` 表示失败（如参数错误）。
-- 异步过程中的错误（如网络超时）将通过 `err` 事件类型的 `Error` 字段回调通知。
+- API 函数返回 ***-1*** 表示失败（如参数错误）。
+- 异步过程中的错误（如网络超时）将通过 ***err*** 事件类型的 ***Error*** 字段回调通知。
 
 ## API 函数列表
 
@@ -186,7 +186,7 @@ def callback(event_json_str, msg_json_str):
 ### 自动重试机制（指数退避）
 
 下载失败时自动进行重试，采用指数退避策略：
-- **最大重试次数**：默认 3 次，可通过 `set_retry_config` 配置
+- **最大重试次数**：默认 3 次，可通过 ***set_retry_config*** 配置
 - **初始延迟**：默认 1000ms
 - **最大延迟**：默认 30000ms
 - **退避策略**：每次失败后延迟翻倍，上限为最大延迟
@@ -194,26 +194,26 @@ def callback(event_json_str, msg_json_str):
 ### 速度限制
 
 支持对下载速度进行限制，避免占用过多带宽：
-- 使用 `set_speed_limit` 函数设置
+- 使用 ***set_speed_limit*** 函数设置
 - 单位：bytes/s，0 表示不限速
 
 ### 代理支持
 
 支持通过 HTTP/HTTPS/SOCKS5 代理服务器下载：
-- 使用 `set_proxy` 函数设置
+- 使用 ***set_proxy*** 函数设置
 - 支持 http://、https://、socks5:// 协议
 
 ### 性能统计
 
 提供实时性能监控数据：
-- 使用 `get_performance_stats` 函数获取
+- 使用 ***get_performance_stats*** 函数获取
 - 包括当前速度、平均速度、峰值速度等
 
 ### Headers 支持
 
 支持在全局和任务级别设置 HTTP 请求头：
-- 全局 headers：通过 `headersJson` 参数设置（`start_download` / `get_downloader`）
-- 任务级别：在任务 JSON 中设置 `headers` 字段
+- 全局 headers：通过 ***headersJson*** 参数设置（***start_download*** / ***get_downloader***）
+- 任务级别：在任务 JSON 中设置 ***headers*** 字段
 
 ### SFTP 主机密钥验证
 

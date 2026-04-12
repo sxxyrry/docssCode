@@ -3,7 +3,7 @@
 本节详细介绍了 TT High Speed Downloader (TTHSD) 的 API 接口、数据结构和回调机制。
 
 > [!TIP]
-> 本文档介绍的是 **TTHSD Next**（Rust 版本）的 API。API 接口与 [TTHSD Golang](https://github.com/sxxyrry/TTHighSpeedDownloader) 完全兼容，可以直接替换动态库使用。
+> 本文档介绍的是 **TTHSD Next**（Rust 版本）的 API，版本 **0.1.0-dev.6**。API 接口与 [TTHSD Golang](https://github.com/sxxyrry/TTHighSpeedDownloader) 完全兼容，可以直接替换动态库使用。
 > 
 > TTHSD Golang 已停止开发，建议使用 TTHSD Next。
 
@@ -166,6 +166,7 @@ def callback(event_json_str, msg_json_str):
 | [set_proxy](/zh/api/functions/set_proxy) | 设置代理服务器 |
 | [set_retry_config](/zh/api/functions/set_retry_config) | 配置重试参数 |
 | [get_performance_stats](/zh/api/functions/get_performance_stats) | 获取性能统计信息 |
+| [free_string](/zh/api/functions/free_string) | 释放字符串内存（C/C++ 调用者） |
 
 ## TTHSD Next 的性能优势
 
@@ -179,6 +180,54 @@ def callback(event_json_str, msg_json_str):
 | 内存安全 | Rust 所有权机制 | 依赖 GC |
 | GC 暂停 | 无 | 有 |
 | Android 支持 | 支持 | 不支持 |
+
+## 新增功能 (v0.1.0-dev.6)
+
+### 自动重试机制（指数退避）
+
+下载失败时自动进行重试，采用指数退避策略：
+- **最大重试次数**：默认 3 次，可通过 `set_retry_config` 配置
+- **初始延迟**：默认 1000ms
+- **最大延迟**：默认 30000ms
+- **退避策略**：每次失败后延迟翻倍，上限为最大延迟
+
+### 速度限制
+
+支持对下载速度进行限制，避免占用过多带宽：
+- 使用 `set_speed_limit` 函数设置
+- 单位：bytes/s，0 表示不限速
+
+### 代理支持
+
+支持通过 HTTP/HTTPS/SOCKS5 代理服务器下载：
+- 使用 `set_proxy` 函数设置
+- 支持 http://、https://、socks5:// 协议
+
+### 性能统计
+
+提供实时性能监控数据：
+- 使用 `get_performance_stats` 函数获取
+- 包括当前速度、平均速度、峰值速度等
+
+### Headers 支持
+
+支持在全局和任务级别设置 HTTP 请求头：
+- 全局 headers：通过 `headersJson` 参数设置（`start_download` / `get_downloader`）
+- 任务级别：在任务 JSON 中设置 `headers` 字段
+
+### SFTP 主机密钥验证
+
+增强 SFTP 下载的安全性，支持主机密钥验证。
+
+### 条件编译
+
+可通过 Cargo features 启用/禁用特定协议：
+
+```toml
+[features]
+default = ["full"]
+full = ["ftp", "sftp", "torrent", "metalink", "ed2k", "http3", "websocket", "socket"]
+```
 
 ## 版本说明
 

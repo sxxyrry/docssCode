@@ -12,6 +12,8 @@
 > 新版文档未完全更新，请等待更新。
 > [TTHSDNext](https://github.com/TTHSDownloader/TTHSDNext) 现在还处于实验性阶段，但其核心的基本功能均可使用， Android 和 HarmonyOS 的编译版本 未经过大规模测试，可以的话请帮忙测试，谢谢！
 
+## 当前版本：0.1.0-dev.6 (2026-04-12)
+
 ## 简介
 
 TT High Speed Downloader (TTHSD) 是一个高性能的多线程下载器内核，原生支持 **7 种下载协议**（HTTP/HTTPS、HTTP/3、FTP、SFTP、BitTorrent/Magnet、ED2K、Metalink）。TTHSD Next 采用 **Rust 语言**编写，核心逻辑编译为动态链接库 (DLL/SO/DYLIB)，可供 Python、C++、C#、Java/Kotlin、TypeScript、Rust、Go、Godot 等 **8 种语言**调用。
@@ -131,6 +133,19 @@ input("按 Enter 退出...")
 ### 新增功能
 - **Android 支持**：提供完整的 JNI 接口，可在 Android 应用中调用
 - **更安全的内存管理**：Rust 的所有权机制确保内存安全
+- **自动重试机制**：指数退避策略，可配置重试次数和延迟
+- **速度限制**：支持设置下载速度上限
+- **代理支持**：HTTP/HTTPS/SOCKS5 代理
+- **性能统计**：实时监控下载速度、流量等数据
+- **Headers 支持**：全局和任务级别 HTTP 请求头
+- **SFTP 主机密钥验证**：增强安全性
+
+### 内部模块
+- **metrics.rs**: Prometheus 指标导出
+- **logging.rs**: 结构化日志（基于 tracing）
+- **progress_tracker.rs**: 统一进度追踪
+- **buffer_pool.rs**: Buffer 对象池
+- **adaptive_concurrency.rs**: 自适应并发控制
 
 ### 兼容性
 - **调用方式相同**：API 接口与 TTHSD Golang 完全兼容

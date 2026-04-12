@@ -2,6 +2,9 @@
 
 TTHSD Next 内置了灵活的协议路由工厂 (***get_downloader***)，根据 URL 自动选择最优的下载器实现。目前原生支持以下 **7 种下载协议**：
 
+> [!NOTE]
+> 通过条件编译，可以启用/禁用特定协议以减少二进制体积。详见 [条件编译说明](#条件编译)。
+
 ## HTTP / HTTPS
 
 **源码模块**: ***http_downloader.rs***
@@ -160,6 +163,33 @@ https://example.com/file.metalink
 | ***ed2k://*** | ED2KDownloader |
 | URL 以 ***.metalink*** 或 ***.meta4*** 结尾 | MetalinkDownloader |
 | 其他 | 回退到 HTTPDownloader |
+
+---
+
+## 条件编译
+
+TTHSD 支持通过 Cargo 条件编译启用/禁用特定协议，以减少二进制体积：
+
+```toml
+[features]
+default = ["full"]
+full = ["ftp", "sftp", "torrent", "metalink", "ed2k", "http3", "websocket", "socket"]
+# 单独启用
+ftp = []
+sftp = []
+torrent = []
+metalink = []
+ed2k = []
+http3 = []
+websocket = []
+socket = []
+android = []
+```
+
+**使用示例**：
+- 启用所有协议（默认）：`default = ["full"]`
+- 仅启用 HTTP/3：`default = ["http3"]`
+- 启用 HTTP + FTP：`default = ["http3", "ftp"]`
 
 ---
 

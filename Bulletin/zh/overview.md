@@ -8,7 +8,7 @@
 
 | 公告 | 说明 |
 |------|------|
-| [TTHSD Next ABI 命名风格变更说明](/zh/ABI-Changing-Explan) | 解释 ABI 函数命名从驼峰改为蛇形的影响及迁移方案 |
+| [TLD ABI 命名风格变更说明](/zh/ABI-Changing-Explan) | 解释 ABI 函数命名从驼峰改为蛇形的影响及迁移方案 |
 
 ---
 
